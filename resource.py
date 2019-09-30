@@ -1,5 +1,6 @@
 from browsermobproxy import Server
 from selenium import webdriver
+import json
 
 # Purpose of this script: List all resources (URLs) that
 # Chrome downloads when visiting some page.
