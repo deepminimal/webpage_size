@@ -34,7 +34,7 @@ while True:
   browser.implicitly_wait(30) # seconds
 print("new height")
 print(browser.execute_script("return document.body.scrollHeight"))
-browser.execute_script("window.scrollTo(0, 3000);")
+#browser.execute_script("window.scrollTo(0, 3000);")
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 print("end WebDriverWait")
 total_bytes = []
