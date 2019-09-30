@@ -53,6 +53,7 @@ for entry in browser.get_log('performance'):
 print("DataReceived: %s", str(sum(total_bytes)))
 print("Resource size: %s", str(sum(total_bytes2)))
 print(str(sum(total_bytes)+sum(total_bytes2)))
+print(browser.execute_script("var network = performance.getEntries() || {}; return network;"))
 browser.save_screenshot("screenshot.png")
 browser.close()
 browser.quit()
