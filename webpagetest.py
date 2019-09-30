@@ -19,23 +19,21 @@ browser.set_page_load_timeout(30)
 print("start get")
 browser.get('https://ostin.com')
 print("start WebDriverWait")
-
+print("last height")
 last_height = browser.execute_script("return document.body.scrollHeight")
+print(last_height)
 while True:
-  print(browser.execute_script("return document.body.scrollHeight"))
   browser.execute_script("window.scrollTo(0, document.body.scrollHeight-1000);")
-  print("scroll down")
-  print(browser.execute_script("return document.body.scrollHeight"))
   # Wait to load the page.
   browser.implicitly_wait(30) # seconds
   new_height = browser.execute_script("return document.body.scrollHeight")
-  print(browser.execute_script("return document.body.scrollHeight"))
   if new_height == last_height:
     break
-    last_height = new_height
+  last_height = new_height
     # sleep for 30s
-    browser.implicitly_wait(30) # seconds
-        
+  browser.implicitly_wait(30) # seconds
+print("new height")
+print(browser.execute_script("return document.body.scrollHeight"))
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 print("end WebDriverWait")
 total_bytes = []
@@ -46,5 +44,5 @@ for entry in browser.get_log('performance'):
             mb = round((float(sum(total_bytes) / 1000) / 1000), 2)
 print(str(sum(total_bytes)))
 browser.save_screenshot("screenshot.png")
-print(browser.execute_script("return document.body.scrollHeight"))
+
 browser.close()
