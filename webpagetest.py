@@ -23,7 +23,7 @@ loading_finished = [l['message'] for l in logs if
 #lf_enc_data_len = [int(re_encdatalen.match(m)[1]) for m in loading_finished]
 lf_enc_data_len = 0
 for m in loading_finished:
-  x = re.findall(r".*'encodedDataLength':([0-9]+),", m)
+  x = re.findall(r'.*"encodedDataLength":([0-9]+),', m)
   print(x)
   #lf_enc_data_len += int(x[0])
 
