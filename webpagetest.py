@@ -31,6 +31,7 @@ count = 0
 newtwork_logs = []
 newtwork_logs = browser.execute_script("var network = performance.getEntries() || {}; return network;")
 print(newtwork_logs)
+print("--------------------------------------------------")
 for entry2 in newtwork_logs:
   if "transferSize" in str(entry2):
     #count += 1
