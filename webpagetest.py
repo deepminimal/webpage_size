@@ -41,6 +41,7 @@ WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return do
 print("end WebDriverWait")
 total_bytes = []
 total_bytes2 = []
+total_bytes3 = []
 counter = 0
 count = 0
 
@@ -53,7 +54,13 @@ for entry in browser.get_log('performance'):
 print("DataReceived: %s", str(sum(total_bytes)))
 print("Resource size: %s", str(sum(total_bytes2)))
 print(str(sum(total_bytes)+sum(total_bytes2)))
-print(browser.execute_script("var network = performance.getEntries() || {}; return network;"))
+newtwork_logs = []
+newtwork_logs = browser.execute_script("var network = performance.getEntries() || {}; return network;"))
+for entry2 in newtwork_logs:
+  if "transferSize" in str(entry2):
+    r3 = re.search(r'transferSize\":(.*?),', str(entry2))
+    total_bytes3.append(int(r3.group(1)))
+print("DataReceived: %s", str(sum(total_bytes3)))
 browser.save_screenshot("screenshot.png")
 browser.close()
 browser.quit()
