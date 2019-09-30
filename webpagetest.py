@@ -19,14 +19,17 @@ browser.set_page_load_timeout(30)
 print("start get")
 browser.get('https://ostin.com')
 print("start WebDriverWait")
-print(browser.execute_script("return document.body.scrollHeight"))
+
 last_height = browser.execute_script("return document.body.scrollHeight")
 while True:
+  print(browser.execute_script("return document.body.scrollHeight"))
   browser.execute_script("window.scrollTo(0, document.body.scrollHeight-1000);")
+  print("scroll down")
+  print(browser.execute_script("return document.body.scrollHeight"))
   # Wait to load the page.
   browser.implicitly_wait(30) # seconds
   new_height = browser.execute_script("return document.body.scrollHeight")
-
+  print(browser.execute_script("return document.body.scrollHeight"))
   if new_height == last_height:
     break
     last_height = new_height
