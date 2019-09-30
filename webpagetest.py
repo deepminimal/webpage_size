@@ -44,6 +44,7 @@ for entry in browser.get_log('performance'):
             total_bytes.append(int(r.group(1)))
 print("encodedDataLength: ", str(sum(total_bytes)))
 print("Transferred size: ", str(sum(total_bytes)-sum(total_bytes3)))
+print(browser.requests)
 browser.save_screenshot("screenshot.png")
 browser.close()
 browser.quit()
