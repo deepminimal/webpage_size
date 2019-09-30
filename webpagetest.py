@@ -40,11 +40,10 @@ for entry2 in newtwork_logs:
 print("transferSize: %s", str(sum(total_bytes3)))
 for entry in browser.get_log('performance'):
         if "Network.loadingFinished" in str(entry):
-            print(str(entry))
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
             total_bytes.append(int(r.group(1)))
 print("encodedDataLength: ", str(sum(total_bytes)))
-#print("Transferred size: ", str(sum(total_bytes2)-sum(total_bytes)))
+print("Transferred size: ", str(sum(total_bytes)-sum(total_bytes3)))
 browser.save_screenshot("screenshot.png")
 browser.close()
 browser.quit()
