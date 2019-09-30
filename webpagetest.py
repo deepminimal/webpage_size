@@ -44,7 +44,7 @@ for entry in browser.get_log('performance'):
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
             r2 = re.search(r'dataLength\":(.*?),', str(entry))
             total_bytes.append(int(r.group(1)))
-            total_bytes2.append(int(r.group(2)))
+            total_bytes2.append(int(r.group(1)))
 print("encodedDataLength: ", str(sum(total_bytes)))
 print("dataLength: ", str(sum(total_bytes2)))
 print("Transferred size: ", str(sum(total_bytes)-sum(total_bytes2)))
