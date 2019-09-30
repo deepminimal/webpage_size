@@ -16,8 +16,8 @@ d['goog:loggingPrefs'] = { 'performance':'ALL' }
 
 print("start browser")
 browser = webdriver.Chrome(desired_capabilities=d, options=options)
-browser.implicitly_wait(30)
-browser.set_page_load_timeout(30)
+browser.implicitly_wait(60)
+browser.set_page_load_timeout(60)
 print("start get")
 browser.get('https://ostin.com')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
