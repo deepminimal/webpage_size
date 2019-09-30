@@ -26,13 +26,13 @@ for m in loading_finished:
   x = re.findall(r'.*"encodedDataLength":([0-9]+),', m)
   lf_enc_data_len += int(x[0])
 
-print(str(lf_enc_data_len))
+#print(str(lf_enc_data_len))
 sizes = browser.execute_script("""
   return performance.getEntries()
     .filter(e => e.entryType==='navigation' || e.entryType==='resource')
     .map(e=> ([e.name, e.transferSize]));
   """)
-print(str(sizes))
+#print(str(sizes))
 size = browser.execute_script("""
   return performance.getEntries()
     .filter(e => e.entryType==='navigation' || e.entryType==='resource')
