@@ -38,12 +38,16 @@ for entry2 in newtwork_logs:
     r3 = re.search(r"transferSize\':(.*?),", str(entry2))
     total_bytes3.append(int(r3.group(1)))
 print("transferSize: %s", str(sum(total_bytes3)))
+
 for entry in browser.get_log('performance'):
         if "Network.loadingFinished" in str(entry):
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
+            r2 = re.search(r'dataLength\":(.*?),', str(entry))
             total_bytes.append(int(r.group(1)))
+            total_bytes2.append(int(r.group(2)))
 print("encodedDataLength: ", str(sum(total_bytes)))
-print("Transferred size: ", str(sum(total_bytes)-sum(total_bytes3)))
+print("dataLength: ", str(sum(total_bytes2)))
+print("Transferred size: ", str(sum(total_bytes)-sum(total_bytes2)))
 print(browser.requests)
 browser.save_screenshot("screenshot.png")
 browser.close()
