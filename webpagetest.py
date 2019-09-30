@@ -38,6 +38,12 @@ for entry2 in newtwork_logs:
     r3 = re.search(r"transferSize\':(.*?),", str(entry2))
     total_bytes3.append(int(r3.group(1)))
 print("transferSize: %s", str(sum(total_bytes3)))
+for entry in browser.get_log('performance'):
+        if "Network.dataReceived" in str(entry):
+            r = re.search(r'encodedDataLength\":(.*?),', str(entry))
+            total_bytes.append(int(r.group(1)))
+            mb = round((float(sum(total_bytes) / 1000) / 1000), 2)
+print("encodedDataLength: ", str(sum(total_bytes)))
 browser.save_screenshot("screenshot.png")
 browser.close()
 browser.quit()
