@@ -16,12 +16,13 @@ d['goog:loggingPrefs'] = { 'performance':'ALL' }
 browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.get('https://ostin.com')
 
-def page_has_loaded(self):
-    print("URL=%s", str(self.driver.current_url))
-    page_state = self.driver.execute_script('return document.readyState;')
+def page_has_loaded(object):
+    print("URL=%s", str(self.browser.current_url))
+    page_state = self.browser.execute_script('return document.readyState;')
     return page_state == 'complete'
 
-WebDriverWait(browser, 50).until(page_has_loaded(browser))
+wait = WebDriverWait(browser, 50)
+wait.until(page_has_loaded())
 #logs = browser.execute('getLog', {'type': 'performance'})['value']
 #re_encdatalen = re.compile(r'.*encodedDataLength":(-?[0-9]+),.*$')
 #loading_finished = [l['message'] for l in logs if
