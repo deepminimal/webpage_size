@@ -21,17 +21,17 @@ browser.get('https://ostin.com')
 print("start WebDriverWait")
 print(browser.execute_script("return document.body.scrollHeight"))
 last_height = browser.execute_script("return document.body.scrollHeight")
-  while True:
-    browser.execute_script("window.scrollTo(0, document.body.scrollHeight-1000);")
-    # Wait to load the page.
-    browser.implicitly_wait(30) # seconds
-    new_height = browser.execute_script("return document.body.scrollHeight")
+while True:
+  browser.execute_script("window.scrollTo(0, document.body.scrollHeight-1000);")
+  # Wait to load the page.
+  browser.implicitly_wait(30) # seconds
+  new_height = browser.execute_script("return document.body.scrollHeight")
 
-    if new_height == last_height:
-      break
-      last_height = new_height
-      # sleep for 30s
-      browser.implicitly_wait(30) # seconds
+  if new_height == last_height:
+    break
+    last_height = new_height
+    # sleep for 30s
+    browser.implicitly_wait(30) # seconds
         
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 print("end WebDriverWait")
