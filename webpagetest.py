@@ -17,7 +17,7 @@ browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.get('https://ostin.com')
 
 def page_has_loaded(self):
-    print("Checking if %s page is loaded.", self.browser.current_url)
+
     page_state = self.browser.execute_script('return document.readyState;')
     return page_state == 'complete'
 
