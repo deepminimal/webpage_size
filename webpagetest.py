@@ -49,7 +49,7 @@ for entry in browser.get_log('performance'):
     r = re.search(r'encodedDataLength\":(.*?),', str(entry))
     r2 = re.search(r'dataLength\":(.*?),', str(entry))
     total_bytes.append(int(r.group(1)))
-    total_bytes2.append(int(r2.group(2)))
+    total_bytes2.append(int(r2.group(1)))
 print(str(sum(total_bytes)))
 print(str(sum(total_bytes2)))
 
