@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import chromedriver_binary
 from selenium.webdriver.support.ui import WebDriverWait
+
 print("start new")
 options = webdriver.ChromeOptions()
 options.add_argument('--no-sandbox')
@@ -45,5 +46,6 @@ for entry in browser.get_log('performance'):
             mb = round((float(sum(total_bytes) / 1000) / 1000), 2)
 print(str(sum(total_bytes)))
 browser.save_screenshot("screenshot.png")
-
+har = json.loads(browser.get_log('har')[0]['message'])
 browser.close()
+driver.quit()
