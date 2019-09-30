@@ -44,13 +44,13 @@ print("transferSize: %s", str(sum(total_bytes3)))
 logs = browser.get_log('performance')
 mb = 0
 for entry in browser.get_log('performance'):
-        if "Network.loadingFinished" in str(entry):
+        if "Network.dataReceived" in str(entry):
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
 
             total_bytes.append(int(r.group(1)))
-            mb = round((float(sum(total_bytes) / 1000) / 1000), 2)
+
 print(logs)
-print("encodedDataLength: ", str(mb))
+
 print("encodedDataLength: ", str(sum(total_bytes)))
 
 browser.save_screenshot("screenshot.png")
