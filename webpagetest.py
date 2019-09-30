@@ -19,7 +19,7 @@ def page_has_loaded(self):
     self.log.info("Checking if %s page is loaded.", str(self.driver.current_url))
     page_state = self.driver.execute_script('return document.readyState;')
     return page_state == 'complete'
-WebDriverWait(browser, 50).until(page_has_loaded())
+WebDriverWait(browser, 50).until(page_has_loaded("https://ostin.com"))
 #logs = browser.execute('getLog', {'type': 'performance'})['value']
 #re_encdatalen = re.compile(r'.*encodedDataLength":(-?[0-9]+),.*$')
 #loading_finished = [l['message'] for l in logs if
