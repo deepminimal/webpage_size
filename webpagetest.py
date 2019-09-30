@@ -19,6 +19,7 @@ browser.set_page_load_timeout(30)
 print("start get")
 browser.get('https://ostin.com')
 print("start WebDriverWait")
+browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 print("end WebDriverWait")
 total_bytes = []
