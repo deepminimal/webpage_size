@@ -14,6 +14,8 @@ d['goog:loggingPrefs'] = { 'performance':'ALL' }
 
 print("start browser")
 browser = webdriver.Chrome(desired_capabilities=d, options=options)
+browser.implicitly_wait(30)
+browser.set_page_load_timeout(30)
 print("start get")
 browser.get('https://ostin.com')
 print("start WebDriverWait")
@@ -26,8 +28,4 @@ for entry in browser.get_log('performance'):
             total_bytes.append(int(r.group(1)))
             mb = round((float(sum(total_bytes) / 1000) / 1000), 2)
 print(str(sum(total_bytes)))
-entries = proxy.har['log']["entries"]
-for entry in entries:
-    if 'request' in entry.keys():
-        print entry['request']['url']
 browser.close()
