@@ -20,8 +20,8 @@ logs = browser.execute('getLog', {'type': 'performance'})['value']
 re_encdatalen = re.compile(r'^.*encodedDataLength":(-?[0-9]+),.*$')
 loading_finished = [l['message'] for l in logs if
                         'INFO' == l['level'] and 'Network.loadingFinished' in l['message']]
-#lf_enc_data_len = [int(re_encdatalen.match(m)[1]) for m in loading_finished]
-#lf_enc_data_len_sum = sum(lf_enc_data_len)
+lf_enc_data_len = [int(re_encdatalen.match(m)[1]) for m in loading_finished]
+lf_enc_data_len_sum = sum(lf_enc_data_len)
 
-print(str(loading_finished))
+print(str(lf_enc_data_len_sum))
 browser.close()
