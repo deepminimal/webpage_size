@@ -31,23 +31,20 @@ count = 0
 newtwork_logs = []
 newtwork_logs = browser.execute_script("var network = performance.getEntries() || {}; return network;")
 for entry2 in newtwork_logs:
-  if "encodedBodySize" in str(entry2):
+  if "transferSize" in str(entry2):
     #count += 1
     #if (count == 1):
       #print(entry2)
-    r3 = re.search(r"encodedBodySize\':(.*?),", str(entry2))
+    r3 = re.search(r"transferSize\':(.*?),", str(entry2))
     total_bytes3.append(int(r3.group(1)))
-print("encodedBodySize: %s", str(sum(total_bytes3)))
+print("transferSize: %s", str(sum(total_bytes3)))
 for entry in browser.get_log('performance'):
         if "Network.loadingFinished" in str(entry):
             print(str(entry))
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
-            #r2 = re.search(r'headersText\":(.*?),', str(entry))
             total_bytes.append(int(r.group(1)))
-            #total_bytes2.append(int(r2.group(1)))
 print("encodedDataLength: ", str(sum(total_bytes)))
-print("headersText: ", str(sum(total_bytes2)))
-print("Transferred size: ", str(sum(total_bytes2)-sum(total_bytes)))
+#print("Transferred size: ", str(sum(total_bytes2)-sum(total_bytes)))
 browser.save_screenshot("screenshot.png")
 browser.close()
 browser.quit()
