@@ -36,6 +36,7 @@ result = json.dumps(proxy.har)
 json_data = json.loads(result)
 
 request= [x for x in json_data['log']['entries']]
+print(request)
 #for entry in entries:
 #    if 'request' in entry.keys():
 #        print entry['request']['url']
