@@ -42,12 +42,12 @@ print("transferSize: %s", str(sum(total_bytes3)))
 for entry in browser.get_log('performance'):
         if "Network.loadingFinished" in str(entry):
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
-            r2 = re.search(r'dataLength\":(.*?),', str(entry))
+
             total_bytes.append(int(r.group(1)))
-            total_bytes2.append(int(r2.group(1)))
+
 print("encodedDataLength: ", str(sum(total_bytes)))
-print("dataLength: ", str(sum(total_bytes2)))
-print("Transferred size: ", str(sum(total_bytes)-sum(total_bytes2)))
+
+
 browser.save_screenshot("screenshot.png")
 browser.close()
 browser.quit()
