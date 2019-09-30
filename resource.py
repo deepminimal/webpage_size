@@ -6,8 +6,8 @@ from selenium import webdriver
 
 ### OPTIONS ###
 url = "https://ostin.com"
-chromedriver_location = "./chromedriver" # Path containing the chromedriver
-browsermobproxy_location = "./browsermob-proxy-2.1.4/bin/browsermob-proxy" # location of the browsermob-proxy binary file (that starts a server)
+chromedriver_location = "/home/work/webpage_size/chromedriver" # Path containing the chromedriver
+browsermobproxy_location = "/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy" # location of the browsermob-proxy binary file (that starts a server)
 chrome_location = "/usr/bin/google-chrome-stable"
 ###############
 
@@ -19,6 +19,9 @@ proxy = server.create_proxy()
 # Setup Chrome webdriver - note: does not seem to work with headless On
 options = webdriver.ChromeOptions()
 options.binary_location = chrome_location
+options.add_argument('--no-sandbox')
+options.add_argument('--headless')
+options.add_argument('--disable-dev-shm-usage')
 # Setup proxy to point to our browsermob so that it can track requests
 options.add_argument('--proxy-server=%s' % proxy.proxy)
 driver = webdriver.Chrome(chromedriver_location, chrome_options=options)
