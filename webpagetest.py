@@ -17,7 +17,7 @@ browser = webdriver.Chrome(desired_capabilities=d, options=options)
 print("start get")
 browser.get('https://ostin.com')
 print("start WebDriverWait")
-#WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
+WebDriverWait(browser, 10).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 print("end WebDriverWait")
 total_bytes = []
 for entry in browser.get_log('performance'):
