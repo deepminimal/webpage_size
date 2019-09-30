@@ -26,4 +26,8 @@ for entry in browser.get_log('performance'):
             total_bytes.append(int(r.group(1)))
             mb = round((float(sum(total_bytes) / 1000) / 1000), 2)
 print(str(sum(total_bytes)))
+entries = proxy.har['log']["entries"]
+for entry in entries:
+    if 'request' in entry.keys():
+        print entry['request']['url']
 browser.close()
