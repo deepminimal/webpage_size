@@ -7,8 +7,8 @@ from selenium import webdriver
 ### OPTIONS ###
 url = "https://ostin.com"
 chromedriver_location = "./chromedriver" # Path containing the chromedriver
-browsermobproxy_location = "/opt/browsermob-proxy-2.1.4/bin/browsermob-proxy" # location of the browsermob-proxy binary file (that starts a server)
-chrome_location = "/usr/bin/x-www-browser"
+browsermobproxy_location = "./browsermob-proxy-2.1.4/bin/browsermob-proxy" # location of the browsermob-proxy binary file (that starts a server)
+chrome_location = "/usr/bin/google-chrome-stable"
 ###############
 
 # Start browsermob proxy
