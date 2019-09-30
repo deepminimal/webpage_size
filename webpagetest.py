@@ -33,4 +33,10 @@ sizes = browser.execute_script("""
     .map(e=> ([e.name, e.transferSize]));
   """)
 print(str(sizes))
+size = browser.execute_script("""
+  return performance.getEntries()
+    .filter(e => e.entryType==='navigation' || e.entryType==='resource')
+    .reduce((acc, e) => acc + e.transferSize, 0)
+  """)
+print(str(sizes))
 browser.close()
