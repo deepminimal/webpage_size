@@ -19,7 +19,7 @@ browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.implicitly_wait(60)
 browser.set_page_load_timeout(60)
 print("start get")
-browser.get('https://ostin.com')
+browser.get('https://www.google-analytics.com/analytics.js')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 total_bytes = []
 total_bytes2 = []
