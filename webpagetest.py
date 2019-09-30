@@ -22,7 +22,6 @@ print("end WebDriverWait")
 total_bytes = []
 for entry in browser.get_log('performance'):
         if "Network.dataReceived" in str(entry):
-            print(str(entry))
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
             total_bytes.append(int(r.group(1)))
             mb = round((float(sum(total_bytes) / 1000) / 1000), 2)
