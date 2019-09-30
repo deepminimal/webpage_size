@@ -40,7 +40,7 @@ print(browser.execute_script("return document.body.scrollHeight"))
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 print("end WebDriverWait")
 total_bytes = []
-count = 0
+counter = 0
 for entry in browser.get_log('performance'):
         if "Network.dataReceived" in str(entry):
             counter += 1
