@@ -15,7 +15,7 @@ d['goog:loggingPrefs'] = { 'performance':'ALL' }
 
 browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.get('https://ostin.com')
-WebDriverWait(browser, 60).until(lambda d: d.execute_script("return document.readyState == 'complete'"))
+WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 total_bytes = []
 for entry in browser.get_log('performance'):
         if "Network.dataReceived" in str(entry):
