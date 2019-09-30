@@ -41,14 +41,18 @@ WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return do
 print("end WebDriverWait")
 total_bytes = []
 counter = 0
+count = 0
 for entry in browser.get_log('performance'):
-        if "Network.dataReceived" in str(entry):
-            counter += 1
-            if (counter == 1):
-              print(str(entry))
-            r = re.search(r'encodedDataLength\":(.*?),', str(entry))
-            total_bytes.append(int(r.group(1)))
-            mb = round((float(sum(total_bytes) / 1000) / 1000), 2)
+  count += 1
+  if (count == 1):
+    print(str(entry))
+  if "Network.dataReceived" in str(entry):
+    counter += 1
+    if (counter == 1):
+      print(str(entry))
+    r = re.search(r'encodedDataLength\":(.*?),', str(entry))
+    total_bytes.append(int(r.group(1)))
+    mb = round((float(sum(total_bytes) / 1000) / 1000), 2)
 print(str(sum(total_bytes)))
 browser.save_screenshot("screenshot.png")
 har = json.loads(browser.get_log('har')[0]['message'])
