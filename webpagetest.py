@@ -41,6 +41,7 @@ print("end WebDriverWait")
 total_bytes = []
 total_bytes2 = []
 total_bytes3 = []
+total_bytes4 = []
 counter = 0
 count = 0
 
@@ -51,10 +52,11 @@ for entry in browser.get_log('performance'):
       print(entry)
     r = re.search(r'encodedDataLength\":(.*?),', str(entry))
     r2 = re.search(r'dataLength\":(.*?),', str(entry))
+
     total_bytes.append(int(r.group(1)))
     total_bytes2.append(int(r2.group(1)))
-print("DataReceived: %s", str(sum(total_bytes)))
-print("Resource size: %s", str(sum(total_bytes2)))
+print("encodedDataLength: %s", str(sum(total_bytes)))
+print("dataLength: %s", str(sum(total_bytes2)))
 print(str(sum(total_bytes)+sum(total_bytes2)))
 newtwork_logs = []
 newtwork_logs = browser.execute_script("var network = performance.getEntries() || {}; return network;")
