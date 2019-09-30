@@ -57,9 +57,9 @@ newtwork_logs = []
 newtwork_logs = browser.execute_script("var network = performance.getEntries() || {}; return network;")
 for entry2 in newtwork_logs:
   if "transferSize" in str(entry2):
-    r3 = re.search(r"transferSize\':(.*?),", str(entry2))
+    r3 = re.search(r"encodedBodySize\':(.*?),", str(entry2))
     total_bytes3.append(int(r3.group(1)))
-print("DataReceived: %s", str(sum(total_bytes3)))
+print("encodedBodySize: %s", str(sum(total_bytes3)))
 browser.save_screenshot("screenshot.png")
 browser.close()
 browser.quit()
