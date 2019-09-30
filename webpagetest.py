@@ -42,6 +42,7 @@ for entry2 in newtwork_logs:
     total_bytes3.append(int(r3.group(1)))
 print("transferSize: %s", str(sum(total_bytes3)))
 logs = browser.get_log('performance')
+mb = 0
 for entry in browser.get_log('performance'):
         if "Network.loadingFinished" in str(entry):
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
