@@ -31,8 +31,10 @@ proxy.new_har("Example")
 driver.get(url)
 
 # Print all URLs that were requested
-entries = proxy.har['log']["entries"]
-print(str(entries))
+result = json.dumps(proxy.har)
+json_data = json.loads(result)
+
+request= [x for x in json_data['log']['entries']]
 #for entry in entries:
 #    if 'request' in entry.keys():
 #        print entry['request']['url']
