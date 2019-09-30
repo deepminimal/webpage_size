@@ -40,10 +40,11 @@ for entry2 in newtwork_logs:
 print("encodedBodySize: %s", str(sum(total_bytes3)))
 for entry in browser.get_log('performance'):
         if "Network.loadingFinished" in str(entry):
+            print(str(entry))
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
-            r2 = re.search(r'headersText\":(.*?),', str(entry))
+            #r2 = re.search(r'headersText\":(.*?),', str(entry))
             total_bytes.append(int(r.group(1)))
-            total_bytes2.append(int(r2.group(1)))
+            #total_bytes2.append(int(r2.group(1)))
 print("encodedDataLength: ", str(sum(total_bytes)))
 print("headersText: ", str(sum(total_bytes2)))
 print("Transferred size: ", str(sum(total_bytes2)-sum(total_bytes)))
