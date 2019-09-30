@@ -8,7 +8,7 @@ options.add_argument('--no-sandbox')
 options.add_argument('--headless')
 options.add_argument('--disable-dev-shm-usage')
 d = DesiredCapabilities.CHROME
-d['goog:loggingPrefs'] = { 'performance':'ALL', 'detach': False }
+d['goog:loggingPrefs'] = { 'performance':'ALL' }
 
 
 browser = webdriver.Chrome(desired_capabilities=d, options=options)
