@@ -27,6 +27,10 @@ for m in loading_finished:
   lf_enc_data_len += int(x[0])
 
 print(str(lf_enc_data_len))
-performance_data = browser.execute_script("return window.performance.getEntries();")
-print (performance_data)
+sizes = browser.execute_script("""
+  return performance.getEntries()
+    .filter(e => e.entryType==='navigation' || e.entryType==='resource')
+    .map(e=> ([e.name, e.transferSize]));
+  """)
+print(str(sizes))
 browser.close()
