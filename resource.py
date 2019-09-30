@@ -32,9 +32,10 @@ driver.get(url)
 
 # Print all URLs that were requested
 entries = proxy.har['log']["entries"]
-for entry in entries:
-    if 'request' in entry.keys():
-        print entry['request']['url']
+print(str(entries))
+#for entry in entries:
+#    if 'request' in entry.keys():
+#        print entry['request']['url']
 
 server.stop()
 driver.quit()
