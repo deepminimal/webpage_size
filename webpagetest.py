@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import chromedriver_binary
+from selenium.webdriver.support.ui import WebDriverWait
 
 options = webdriver.ChromeOptions()
 options.add_argument('--no-sandbox')
@@ -13,7 +14,8 @@ d['goog:loggingPrefs'] = { 'performance':'ALL' }
 
 
 browser = webdriver.Chrome(desired_capabilities=d, options=options)
-browser.get('https://automatetheboringstuff.com')
+browser.get('https://ostin.com')
+WebDriverWait(driver, 50).until(lambda x: 'STIN' in driver.title)
 logs = browser.execute('getLog', {'type': 'performance'})['value']
 re_encdatalen = re.compile(r'^.*encodedDataLength":(-?[0-9]+),.*$')
 loading_finished = [l['message'] for l in logs if
