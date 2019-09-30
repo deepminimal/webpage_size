@@ -42,10 +42,11 @@ print("end WebDriverWait")
 total_bytes = []
 counter = 0
 count = 0
-r = re.search(r'encodedDataLength\":(.*?),', str(entry))
-r2 = re.search(r'dataLength\":(.*?),', str(entry))
+
 for entry in browser.get_log('performance'):
   if "Network.dataReceived" in str(entry):
+    r = re.search(r'encodedDataLength\":(.*?),', str(entry))
+    r2 = re.search(r'dataLength\":(.*?),', str(entry))
     total_bytes.append(int(r.group(1)))
     total_bytes2.append(int(r2.group(2)))
 print(str(sum(total_bytes)))
