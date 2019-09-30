@@ -32,14 +32,14 @@ proxy.new_har("Example")
 driver.get(url)
 
 # Print all URLs that were requested
-result = json.dumps(proxy.har)
-json_data = json.loads(result)
-
-request= [x for x in json_data['log']['entries']]
-print(request)
-#for entry in entries:
-#    if 'request' in entry.keys():
-#        print entry['request']['url']
-
+entries = proxy.har['log']["entries"]
+size = 0
+for entry in entries:
+    if 'request' in entry.keys():
+        print entry['request']['url']
+        print entry['request']['size']
+        size += int(entry['request']['size'])
+        
+print(str(size))
 server.stop()
 driver.quit()
