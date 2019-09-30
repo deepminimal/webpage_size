@@ -36,10 +36,10 @@ entries = proxy.har['log']["entries"]
 size = 0
 for entry in entries:
     if 'request' in entry.keys():
-        print entry['request']['url']
-        print entry['request']['size']
-        size += int(entry['request']['size'])
+        print entry['request']
+#        print entry['request']['size']
+#        size += int(entry['request']['size'])
         
-print(str(size))
+#print(str(size))
 server.stop()
 driver.quit()
