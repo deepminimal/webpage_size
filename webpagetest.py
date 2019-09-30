@@ -17,8 +17,8 @@ browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.get('https://ostin.com')
 
 def page_has_loaded(self):
-    print("URL=%s", str(browser.current_url))
-    page_state = self.browser.execute_script('return document.readyState;')
+    print("URL=%s", str(driver.current_url))
+    page_state = self.driver.execute_script('return document.readyState;')
     return page_state == 'complete'
 
 WebDriverWait(browser, 50).until(page_has_loaded(browser))
