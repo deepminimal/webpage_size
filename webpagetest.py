@@ -49,7 +49,7 @@ for entry in browser.get_log('performance'):
   if "Network.dataReceived" in str(entry):
     counter += 1
     if (counter == 1):
-      print(entry)
+      #print(entry)
     r = re.search(r'encodedDataLength\":(.*?),', str(entry))
     r2 = re.search(r'dataLength\":(.*?),', str(entry))
 
@@ -64,7 +64,7 @@ for entry2 in newtwork_logs:
   if "transferSize" in str(entry2):
     count += 1
     if (count == 1):
-      print(entry2)
+      #print(entry2)
     r3 = re.search(r"encodedBodySize\':(.*?),", str(entry2))
     total_bytes3.append(int(r3.group(1)))
 print("encodedBodySize: %s", str(sum(total_bytes3)))
