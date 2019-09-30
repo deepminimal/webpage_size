@@ -15,24 +15,7 @@ d['goog:loggingPrefs'] = { 'performance':'ALL' }
 
 browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.get('https://ostin.com')
-
-def page_has_loaded(object):
-    print("URL=%s", str(self.browser.current_url))
-    page_state = self.browser.execute_script('return document.readyState;')
-    return page_state == 'complete'
-
-wait = WebDriverWait(browser, 50)
-wait.until(page_has_loaded())
-#logs = browser.execute('getLog', {'type': 'performance'})['value']
-#re_encdatalen = re.compile(r'.*encodedDataLength":(-?[0-9]+),.*$')
-#loading_finished = [l['message'] for l in logs if
-#                        'INFO' == l['level'] and 'Network.loadingFinished' in l['message']]
-#lf_enc_data_len = [int(re_encdatalen.match(m)[1]) for m in loading_finished]
-#lf_enc_data_len = 0
-#for m in loading_finished:
-#  x = re.findall(r'.*"encodedDataLength":([0-9]+),', m)
-#  lf_enc_data_len += int(x[0])
-
+WebDriverWait(browser, 60).until(lambda d: d.execute_script("return document.readyState == 'complete'"))
 total_bytes = []
 for entry in browser.get_log('performance'):
         if "Network.dataReceived" in str(entry):
