@@ -43,11 +43,11 @@ total_bytes = []
 counter = 0
 count = 0
 for entry in browser.get_log('performance'):
-  if "Network.dataReceived" in str(entry):
+  if "Network.requestWillBeSent" in str(entry):
     count += 1
     if (count == 1):
       print(str(entry))
-  if "Network.requestWillBeSent" in str(entry):
+  if "Network.dataReceived" in str(entry):
     print(str(entry))
     r = re.search(r'encodedDataLength\":(.*?),', str(entry))
     total_bytes.append(int(r.group(1)))
