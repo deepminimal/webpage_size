@@ -42,17 +42,15 @@ print("end WebDriverWait")
 total_bytes = []
 counter = 0
 count = 0
+r = re.search(r'encodedDataLength\":(.*?),', str(entry))
+r2 = re.search(r'dataLength\":(.*?),', str(entry))
 for entry in browser.get_log('performance'):
-  if "Network.requestWillBeSent" in str(entry):
-    count += 1
-    if (count == 1):
-      print(str(entry))
   if "Network.dataReceived" in str(entry):
-    print(str(entry))
-    r = re.search(r'encodedDataLength\":(.*?),', str(entry))
     total_bytes.append(int(r.group(1)))
-    mb = round((float(sum(total_bytes) / 1000) / 1000), 2)
+    total_bytes2.append(int(r2.group(2)))
 print(str(sum(total_bytes)))
+print(str(sum(total_bytes2)))
+
 browser.save_screenshot("screenshot.png")
 browser.close()
-driver.quit()
+browser.quit()
