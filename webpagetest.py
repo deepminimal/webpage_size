@@ -17,7 +17,7 @@ browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.get('https://ostin.com')
 WebDriverWait(browser, 50).until(lambda x: 'STIN' in browser.title)
 logs = browser.execute('getLog', {'type': 'performance'})['value']
-re_encdatalen = re.compile(r'^.*encodedDataLength":(-?[0-9]+),.*$')
+re_encdatalen = re.compile(r'.*encodedDataLength":(-?[0-9]+),.*$')
 loading_finished = [l['message'] for l in logs if
                         'INFO' == l['level'] and 'Network.loadingFinished' in l['message']]
 lf_enc_data_len = [int(re_encdatalen.match(m)[1]) for m in loading_finished]
