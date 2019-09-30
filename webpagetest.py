@@ -48,7 +48,7 @@ options.add_argument('--disable-dev-shm-usage')
 # See https://sites.google.com/a/chromium.org/chromedriver/logging/performance-log
 # and https://docs.seleniumhq.org/docs/04_webdriver_advanced.jsp#remotewebdriver
 capbs = webdriver.DesiredCapabilities.CHROME.copy()
-capbs.update({'loggingPrefs': {'performance': 'ALL'}, 'detach': False})
+capbs.update({'goog:loggingPrefs': {'performance': 'ALL'}, 'detach': False})
 
 
 # 2. Crawls each website.
