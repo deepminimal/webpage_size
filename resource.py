@@ -36,7 +36,7 @@ entries = proxy.har['log']["entries"]
 size = 0
 for entry in entries:
     if 'request' in entry.keys():
-        size += int(entry['request']['headerSize'])
+        size += int(entry['request']['headersSize'])
         size += int(entry['request']['bodySize'])
         
 print(str(size))
