@@ -27,6 +27,7 @@ total_bytes3 = []
 total_bytes4 = []
 counter = 0
 count = 0
+#decodedBodySize - size resources
 
 newtwork_logs = []
 newtwork_logs = browser.execute_script("var network = performance.getEntries() || {}; return network;")
@@ -47,7 +48,7 @@ for entry in browser.get_log('performance'):
 
             total_bytes.append(int(r.group(1)))
 print(logs)
-print("encodedDataLength: ", str(sum(total_bytes)))
+print("encodedDataLength: ", str(round((float(sum(total_bytes) / 1000) / 1000), 2)))
 
 
 browser.save_screenshot("screenshot.png")
