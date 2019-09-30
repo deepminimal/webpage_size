@@ -32,5 +32,5 @@ for entry in browser.get_log('performance'):
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
             total_bytes.append(int(r.group(1)))
             mb = round((float(sum(total_bytes) / 1000) / 1000), 2)
-print(str(total_bytes))
+print(str(sum(total_bytes)))
 browser.close()
