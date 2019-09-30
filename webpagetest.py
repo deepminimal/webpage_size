@@ -20,7 +20,7 @@ browser.implicitly_wait(30)
 browser.set_page_load_timeout(30)
 print("start get")
 browser.get('https://ostin.com')
-WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
+#WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 total_bytes = []
 total_bytes2 = []
 total_bytes3 = []
