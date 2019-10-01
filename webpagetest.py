@@ -27,7 +27,7 @@ total_bytes = []
 total_bytes2 = []
 total_bytes3 = []
 newtwork_logs = []
-
+print(len(newtwork_logs))
 for entry in newtwork_logs:
   if "transferSize" in str(entry):
     r = re.search(r"transferSize\':(.*?),", str(entry))
