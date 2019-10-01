@@ -22,11 +22,13 @@ browser.set_window_size(1920, 1080)
 browser.get('https://ostin.com')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 WebDriverWait(browser, 15).until(lambda driver: driver.execute_script("window.scrollTo(0, document.body.scrollHeight); return document.body.scrollHeight;"))
-newtwork_logs = browser.execute_script("return window.performance.getEntries();")
+
 try:
-  WebDriverWait(driver, 30).until(ec.visibility_of_element_located((By.XPATH, "//a[@class='o-footer-legal-info__container']")));
+  WebDriverWait(browser, 30).until(ec.visibility_of_element_located((By.XPATH, "//a[@class='o-footer-legal-info__container']")));
 except Exception as e:
   print(str(e))
+newtwork_logs = browser.execute_script("return window.performance.getEntries();")
+print(network_logs)
 total_bytes = []
 total_bytes2 = []
 total_bytes3 = []
