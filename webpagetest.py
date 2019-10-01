@@ -35,7 +35,7 @@ for entry in browser.get_log('performance'):
             mb = round((float(sum(total_bytes) / 1000) / 1000), 2)
 print("encodedDataLength: ", str(sum(total_bytes)))
 
-browser.save_screenshot("/usr/share/zabbix/screenshot.png")
+#browser.save_screenshot("/usr/share/zabbix/screenshot.png")
 #browser.find_element_by_tag_name('body').screenshot("/usr/share/zabbix/screenshot2.png")
 browser.close()
 browser.quit()
