@@ -42,13 +42,10 @@ try:
   WebDriverWait(browser, 30).until(EC.visibility_of_element_located((By.XPATH, "//a[@class='o-footer-legal-info__container']")));
 except Exception as e:
   print(str(e))
-
 network_logs = browser.execute_script("return window.performance.getEntries();")
-print(network_logs)
 total_bytes = []
 total_bytes2 = []
 total_bytes3 = []
-print(len(network_logs))
 for entry in network_logs:
   if "transferSize" in str(entry):
     r = re.search(r"transferSize\':(.*?),", str(entry))
@@ -71,8 +68,8 @@ for entry in browser_preformance_log:
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
             total_bytes.append(int(r.group(1)))
 print("encodedDataLength: ", str(sum(total_bytes)))
-with open('/usr/share/zabbix/newtwork_logs.json', 'w') as outfile:
-    json.dump(newtwork_logs, outfile)
+with open('/usr/share/zabbix/network_logs.json', 'w') as outfile:
+    json.dump(network_logs, outfile)
     
 browser_preformance_log_clean = json.dumps(browser_preformance_log)
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
