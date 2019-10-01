@@ -13,8 +13,8 @@ from selenium.webdriver.common.by import By
 print("start new")
 options = webdriver.ChromeOptions()
 options.add_argument('--no-sandbox')
-options.add_argument('--headless')
-options.add_argument('--disable-dev-shm-usage')
+#options.add_argument('--headless')
+#options.add_argument('--disable-dev-shm-usage')
 d = DesiredCapabilities.CHROME
 d['goog:loggingPrefs'] = { 'performance':'ALL' }
 browser = webdriver.Chrome(desired_capabilities=d, options=options)
@@ -27,7 +27,7 @@ browser.execute_script("window.scrollTo(0, 4000);")
 try:
     element_present = EC.presence_of_element_located((By.CLASS_NAME, 'o-footer-contacts-social__container'))
     WebDriverWait(browser, 30).until(element_present)
-    print(element_present)
+
 except TimeoutException:
     print "Timed out waiting for page to load"
 network_logs = browser.execute_script("return window.performance.getEntries();")
