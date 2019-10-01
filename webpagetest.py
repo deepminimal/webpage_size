@@ -51,8 +51,9 @@ with open('/usr/share/zabbix/newtwork_logs.json', 'w') as outfile:
     
 browser_preformance_log_clean = json.dumps(browser_preformance_log)
 test = browser_preformance_log_clean.replace('\"', '"')
+test2 = test.replace('\"', '"')
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
-    outfile.write(test)
+    outfile.write(test2)
 
     
 browser.close()
