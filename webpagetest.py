@@ -25,6 +25,9 @@ newtwork_logs = browser.execute_script("var network = performance.getEntries() |
 for entry in newtwork_logs:
   if "transferSize" in str(entry):
     r = re.search(r"transferSize\':(.*?),", str(entry))
+    if (int(r.group(1)) == 0):
+      r = re.search(r"transferSize\':(.*?),", str(entry))
+      total_bytes.append(
     total_bytes.append(int(r.group(1)))
 print("transferSize: ", str(sum(total_bytes)))
 total_bytes = []
@@ -37,7 +40,7 @@ print("encodedDataLength: ", str(sum(total_bytes)))
 with open('/usr/share/zabbix/newtwork_logs.json', 'w') as outfile:
     json.dump(newtwork_logs, outfile)
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
-    json.dump(browser_preformance_log, outfile)
+    json.load(browser_preformance_log, outfile)
 #browser.save_screenshot("/usr/share/zabbix/screenshot.png")
 #browser.find_element_by_tag_name('body').screenshot("/usr/share/zabbix/screenshot2.png")
 browser.close()
