@@ -22,6 +22,7 @@ print("start readystate")
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 print("start scrollHeight")
 WebDriverWait(browser, 15).until(lambda driver: driver.execute_script("window.scrollTo(0, document.body.scrollHeight); return document.body.scrollHeight;"))
+WebDriverWait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'o-footer-legal-info__container')))
 newtwork_logs = browser.execute_script("var network = performance.getEntries() || {}; return network;")
 total_bytes = []
 total_bytes2 = []
