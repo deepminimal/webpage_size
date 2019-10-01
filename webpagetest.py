@@ -24,10 +24,11 @@ browser.get('https://ostin.com')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 # Get scroll height
 browser.execute_script("window.scrollTo(0, 4000);")
-
-hidden_element = browser.find_elements_by_class_name('col-content')
-print(hidden_element)
-
+try:
+    element_present = EC.presence_of_element_located((By.CLASS_NAME, 'o-footer-contacts-social__container'))
+    WebDriverWait(browser, 30).until(element_present)
+except TimeoutException:
+    print "Timed out waiting for page to load"
 network_logs = browser.execute_script("return window.performance.getEntries();")
 total_bytes = []
 total_bytes2 = []
