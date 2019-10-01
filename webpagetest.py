@@ -23,8 +23,11 @@ browser.get('https://ostin.com')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 WebDriverWait(browser, 15).until(lambda driver: driver.execute_script("window.scrollTo(0, document.body.scrollHeight); return document.body.scrollHeight;"))
 newtwork_logs = browser.execute_script("return window.performance.getEntries();")
-element_present = EC.presence_of_element_located((By.ID, "o-footer-legal-info__container"))
-WebDriverWait(browser, 30).until(element_present)
+try:
+  element_present = EC.presence_of_element_located((By.ID, "o-footer-legal-info__container"))  
+  WebDriverWait(browser, 30).until(element_present)
+except Exception as e:
+  print(str(e))
 total_bytes = []
 total_bytes2 = []
 total_bytes3 = []
