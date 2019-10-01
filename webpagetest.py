@@ -37,7 +37,7 @@ while True:
     if new_height == last_height:
         break
     last_height = new_height
-
+browser.execute_script("window.scrollTo(0, 500);")
 try:
   WebDriverWait(browser, 30).until(EC.visibility_of_element_located((By.XPATH, "//a[@class='o-footer-legal-info__container']")));
 except Exception as e:
