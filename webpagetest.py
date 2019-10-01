@@ -27,15 +27,16 @@ newtwork_logs = browser.execute_script("var network = performance.getEntries() |
 for entry in newtwork_logs:
   if "transferSize" in str(entry):
     r = re.search(r"transferSize\':(.*?),", str(entry))
+    r2 = re.search(r"encodedBodySize\':(.*?),", str(entry))
+    total_bytes2.append(int(r2.group(1)))
     total_bytes3.append(int(r.group(1)))
     if (int(r.group(1)) == 0):
-      r2 = re.search(r"decodedBodySize\':(.*?),", str(entry))
+      r2 = re.search(r"encodedBodySize\':(.*?),", str(entry))
       total_bytes.append(int(r2.group(1)))
-      total_bytes2.append(int(r2.group(1)))
     else:
       total_bytes.append(int(r.group(1)))
-print("transferSize if not 0 + decodedBodySize  : ", str(sum(total_bytes)))
-print("decodedBodySize: ", str(sum(total_bytes2)))
+print("transferSize if not 0 + encodedBodySize  : ", str(sum(total_bytes)))
+print("encodedBodySize only: ", str(sum(total_bytes2)))
 print("transferSize only: ", str(sum(total_bytes3)))
 
 total_bytes = []
