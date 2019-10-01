@@ -27,6 +27,7 @@ browser.execute_script("window.scrollTo(0, 4000);")
 try:
     element_present = EC.presence_of_element_located((By.CLASS_NAME, 'o-footer-contacts-social__container'))
     WebDriverWait(browser, 30).until(element_present)
+    print(element_present)
 except TimeoutException:
     print "Timed out waiting for page to load"
 network_logs = browser.execute_script("return window.performance.getEntries();")
