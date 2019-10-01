@@ -28,13 +28,16 @@ for entry in newtwork_logs:
     total_bytes.append(int(r.group(1)))
 print("transferSize: ", str(sum(total_bytes)))
 total_bytes = []
+browser_preformance_log = browser.get_log('performance')
 for entry in browser.get_log('performance'):
         if "Network.dataReceived" in str(entry):
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
             total_bytes.append(int(r.group(1)))
-            mb = round((float(sum(total_bytes) / 1000) / 1000), 2)
 print("encodedDataLength: ", str(sum(total_bytes)))
-
+with open('/usr/share/zabbix/newtwork_logs.json', 'w') as outfile:
+    json.dump(newtwork_logs, outfile)
+with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
+    json.dump(newtwork_logs, outfile)
 #browser.save_screenshot("/usr/share/zabbix/screenshot.png")
 #browser.find_element_by_tag_name('body').screenshot("/usr/share/zabbix/screenshot2.png")
 browser.close()
