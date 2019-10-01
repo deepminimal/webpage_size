@@ -25,7 +25,7 @@ WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return do
 # Get scroll height
 browser.execute_script("window.scrollTo(0, 4000);")
 
-hidden_element = WebDriverWaitbrowser(browser, 60).until(browser.find_element_by_name('col-content')) #this one is not
+hidden_element = WebDriverWait(browser, 60).until(browser.find_element_by_name('col-content')) #this one is not
 if hidden_element.is_displayed():
   print "Element found"
 else:
