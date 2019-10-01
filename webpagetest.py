@@ -26,13 +26,14 @@ for entry in newtwork_logs:
   if "transferSize" in str(entry):
     r = re.search(r"transferSize\':(.*?),", str(entry))
     total_bytes.append(int(r.group(1)))
-print("transferSize: %s", str(sum(total_bytes)))
-#logs = browser.get_log('performance')
-#for entry in browser.get_log('performance'):
-#        if "encodedDataLength" in str(entry):
-#            r = re.search(r"encodedDataLength\':(.*?),", str(entry))
-#            total_bytes.append(int(r.group(1)))
-#print("encodedDataLength: ", str(sum(total_bytes)))
+print("transferSize: ", str(sum(total_bytes)))
+total_bytes = []
+for entry in browser.get_log('performance'):
+        if "Network.dataReceived" in str(entry):
+            r = re.search(r'encodedDataLength\":(.*?),', str(entry))
+            total_bytes.append(int(r.group(1)))
+            mb = round((float(sum(total_bytes) / 1000) / 1000), 2)
+print("encodedDataLength: ", str(sum(total_bytes)))
 
 browser.save_screenshot("/usr/share/zabbix/screenshot.png")
 #browser.find_element_by_tag_name('body').screenshot("/usr/share/zabbix/screenshot2.png")
