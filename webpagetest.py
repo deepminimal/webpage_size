@@ -17,7 +17,7 @@ browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.implicitly_wait(60)
 browser.set_page_load_timeout(60)
 browser.set_window_size(1920, 1080)
-browser.get('https://yandex.ru/')
+browser.get('https://ostin.com/')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 total_bytes = []
 newtwork_logs = []
@@ -29,7 +29,7 @@ for entry in newtwork_logs:
 print("transferSize: ", str(sum(total_bytes)))
 total_bytes = []
 browser_preformance_log = browser.get_log('performance')
-for entry in browser.get_log('performance'):
+for entry in browser_preformance_log:
         if "Network.dataReceived" in str(entry):
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
             total_bytes.append(int(r.group(1)))
