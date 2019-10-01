@@ -22,7 +22,7 @@ browser.set_page_load_timeout(120)
 browser.set_window_size(1920, 1080)
 browser.get('https://ostin.com')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
-# Get scroll height
+
 browser.execute_script("window.scrollTo(0, 4000);")
 try:
     element_present = EC.presence_of_element_located((By.CLASS_NAME, 'o-footer-contacts-social__container'))
