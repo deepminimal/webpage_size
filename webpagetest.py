@@ -17,7 +17,7 @@ browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.implicitly_wait(60)
 browser.set_page_load_timeout(60)
 browser.set_window_size(1920, 1080)
-browser.get('https://www.google-analytics.com/analytics.js')
+browser.get('https://ostin.com')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 total_bytes = []
 newtwork_logs = []
@@ -34,7 +34,7 @@ print("transferSize: %s", str(sum(total_bytes)))
 #            total_bytes.append(int(r.group(1)))
 #print("encodedDataLength: ", str(sum(total_bytes)))
 
-#browser.save_screenshot("/usr/share/zabbix/screenshot.png")
-browser.find_element_by_tag_name('body').screenshot("/usr/share/zabbix/screenshot2.png")
+browser.save_screenshot("/usr/share/zabbix/screenshot.png")
+#browser.find_element_by_tag_name('body').screenshot("/usr/share/zabbix/screenshot2.png")
 browser.close()
 browser.quit()
