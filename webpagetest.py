@@ -24,10 +24,10 @@ newtwork_logs = []
 newtwork_logs = browser.execute_script("var network = performance.getEntries() || {}; return network;")
 for entry in newtwork_logs:
   if "transferSize" in str(entry):
-    r = re.search(r"transferSize\':(.*?),", str(entry))
+    r = re.search(r"decodedBodySize\':(.*?),", str(entry))
     if (int(r.group(1)) == 0):
-      r = re.search(r"transferSize\':(.*?),", str(entry))
-      total_bytes.append(
+      r = re.search(r"decodedBodySize\':(.*?),", str(entry))
+      total_bytes.append(int(r.group(1)))
     total_bytes.append(int(r.group(1)))
 print("transferSize: ", str(sum(total_bytes)))
 total_bytes = []
