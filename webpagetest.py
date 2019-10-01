@@ -18,9 +18,10 @@ browser.implicitly_wait(60)
 browser.set_page_load_timeout(60)
 browser.set_window_size(1920, 1080)
 browser.get('https://ostin.com')
+print("start readystate")
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
+print("start scrollHeight")
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("window.scrollTo(0, document.body.scrollHeight);"))
-WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 newtwork_logs = browser.execute_script("var network = performance.getEntries() || {}; return network;")
 total_bytes = []
 total_bytes2 = []
