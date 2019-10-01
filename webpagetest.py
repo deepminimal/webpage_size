@@ -18,8 +18,7 @@ options.add_argument('--disable-dev-shm-usage')
 d = DesiredCapabilities.CHROME
 d['goog:loggingPrefs'] = { 'performance':'ALL' }
 browser = webdriver.Chrome(desired_capabilities=d, options=options)
-browser.implicitly_wait(60)
-browser.set_page_load_timeout(60)
+browser.set_page_load_timeout(120)
 browser.set_window_size(1920, 1080)
 browser.get('https://ostin.com')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
