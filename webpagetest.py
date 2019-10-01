@@ -32,7 +32,6 @@ for entry in newtwork_logs:
 print("transferSize: ", str(sum(total_bytes)))
 total_bytes = []
 browser_preformance_log = browser.get_log('performance')
-browser_preformance_log = json.dumps(browser_preformance_log)
 for entry in browser_preformance_log:
         if "Network.loadingFinished" in str(entry):
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
@@ -41,7 +40,7 @@ print("encodedDataLength: ", str(sum(total_bytes)))
 with open('/usr/share/zabbix/newtwork_logs.json', 'w') as outfile:
     json.dump(newtwork_logs, outfile)
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
-    json.dump(browser_preformance_log, outfile)
+    json.dumps(browser_preformance_log, outfile)
 #browser.save_screenshot("/usr/share/zabbix/screenshot.png")
 #browser.find_element_by_tag_name('body').screenshot("/usr/share/zabbix/screenshot2.png")
 browser.close()
