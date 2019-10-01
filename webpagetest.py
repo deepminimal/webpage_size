@@ -1,6 +1,7 @@
 import re
 import json
 import time
+import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -37,7 +38,7 @@ while True:
     if new_height == last_height:
         break
     last_height = new_height
-browser.execute_script("window.scrollTo(0, 500);")
+browser.execute_script("window.scrollTo(0, 1000);")
 try:
   WebDriverWait(browser, 30).until(EC.visibility_of_element_located((By.XPATH, "//a[@class='o-footer-legal-info__container']")));
 except Exception as e:
@@ -75,6 +76,6 @@ browser_preformance_log_clean = json.dumps(browser_preformance_log)
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
     outfile.write(browser_preformance_log_clean)
 browser.save_screenshot("/usr/share/zabbix/screenshot12.png")
-browser.quit()
 browser.close()
-
+browser.quit()
+os.system("pkill -9 -f chrom")
