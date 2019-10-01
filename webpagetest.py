@@ -32,7 +32,7 @@ for entry in newtwork_logs:
 print("transferSize: ", str(sum(total_bytes)))
 total_bytes = []
 browser_preformance_log = json.dumps(browser.get_log('performance'))
-print(browser_preformance_log)
+print(json.loads(browser_preformance_log))
 for entry in browser_preformance_log:
         if "Network.loadingFinished" in str(entry):
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
