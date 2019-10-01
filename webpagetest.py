@@ -17,7 +17,7 @@ browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.implicitly_wait(60)
 browser.set_page_load_timeout(60)
 browser.set_window_size(1920, 1080)
-browser.get('https://asp-project.ru/')
+browser.get('http://amusementlogic.ru/')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 total_bytes = []
 newtwork_logs = []
