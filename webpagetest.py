@@ -12,7 +12,7 @@ from selenium.webdriver.common.by import By
 
 print("start new")
 options = webdriver.ChromeOptions()
-#options.add_argument('--no-sandbox')
+options.add_argument('--no-sandbox')
 options.add_argument('--headless')
 #options.add_argument('--disable-dev-shm-usage')
 d = DesiredCapabilities.CHROME
