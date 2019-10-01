@@ -24,8 +24,7 @@ WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return do
 WebDriverWait(browser, 15).until(lambda driver: driver.execute_script("window.scrollTo(0, document.body.scrollHeight); return document.body.scrollHeight;"))
 newtwork_logs = browser.execute_script("return window.performance.getEntries();")
 try:
-  element_present = EC.presence_of_element_located((By.ID, "o-footer-legal-info__container"))  
-  WebDriverWait(browser, 30).until(element_present)
+  WebDriverWait(driver, 30).until(ec.visibility_of_element_located((By.XPATH, "//a[@class='o-footer-legal-info__container']")));
 except Exception as e:
   print(str(e))
 total_bytes = []
