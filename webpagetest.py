@@ -72,7 +72,7 @@ print("encodedDataLength: ", str(sum(total_bytes)))
 with open('/usr/share/zabbix/network_logs.json', 'w') as outfile:
     json.dump(network_logs, outfile)
     
-browser_preformance_log_clean = json.dumps(browser_preformance_log)
+browser_preformance_log_clean = json.dumps(str(browser_preformance_log).replace('\"','"')
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
     outfile.write(browser_preformance_log_clean)
 browser.save_screenshot("/usr/share/zabbix/screenshot12.png")
