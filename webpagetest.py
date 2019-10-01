@@ -6,6 +6,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import chromedriver_binary
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
 
 print("start new")
 options = webdriver.ChromeOptions()
