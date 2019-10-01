@@ -16,13 +16,12 @@ d['goog:loggingPrefs'] = { 'performance':'ALL' }
 browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.implicitly_wait(60)
 browser.set_page_load_timeout(60)
+browser.set_window_size(1920, 1080)
 browser.get('https://www.google-analytics.com/analytics.js')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 total_bytes = []
 newtwork_logs = []
 newtwork_logs = browser.execute_script("var network = performance.getEntries() || {}; return network;")
-print(newtwork_logs)
-print("--------------------------------------------------")
 for entry in newtwork_logs:
   if "transferSize" in str(entry):
     r = re.search(r"transferSize\':(.*?),", str(entry))
@@ -35,6 +34,7 @@ print("transferSize: %s", str(sum(total_bytes)))
 #            total_bytes.append(int(r.group(1)))
 #print("encodedDataLength: ", str(sum(total_bytes)))
 
-browser.save_screenshot("/usr/share/zabbix/screenshot.png")
+#browser.save_screenshot("/usr/share/zabbix/screenshot.png")
+browser.find_element_by_tag_name('body').screenshot("/usr/share/zabbix/screenshot2.png")
 browser.close()
 browser.quit()
