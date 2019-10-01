@@ -39,7 +39,7 @@ for entry in browser_preformance_log:
 print("encodedDataLength: ", str(sum(total_bytes)))
 with open('/usr/share/zabbix/newtwork_logs.json', 'w') as outfile:
     json.dump(newtwork_logs, outfile)
-print(json.loads(browser_preformance_log))
+print(browser_preformance_log)
 print(type(browser_preformance_log))
 #with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
 #    outfile.write(browser_preformance_log)
