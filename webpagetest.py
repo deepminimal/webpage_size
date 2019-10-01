@@ -75,5 +75,6 @@ browser_preformance_log_clean = json.dumps(browser_preformance_log)
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
     outfile.write(browser_preformance_log_clean)
 browser.save_screenshot("/usr/share/zabbix/screenshot12.png")
-browser.close()
 browser.quit()
+browser.close()
+
