@@ -20,7 +20,7 @@ browser.set_window_size(1920, 1080)
 browser.get('https://ostin.com')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
+#WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 total_bytes = []
 total_bytes2 = []
 total_bytes3 = []
