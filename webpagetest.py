@@ -30,7 +30,7 @@ print("transferSize: ", str(sum(total_bytes)))
 total_bytes = []
 browser_preformance_log = browser.get_log('performance')
 for entry in browser_preformance_log:
-        if "Network.dataReceived" in str(entry):
+        if "Network.loadingFinished" in str(entry):
             r = re.search(r'encodedDataLength\":(.*?),', str(entry))
             total_bytes.append(int(r.group(1)))
 print("encodedDataLength: ", str(sum(total_bytes)))
