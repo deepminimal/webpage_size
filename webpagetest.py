@@ -38,11 +38,12 @@ while True:
         break
     last_height = new_height
 browser.execute_script("window.scrollTo(0, 4000);")
-try:
-  WebDriverWait(browser, 30).until(EC.visibility_of_element_located((By.XPATH, "//a[@class='o-footer-legal-info__container']")));
-  print("Found!")
-except NoSuchElementException as e:
-  print(str(e))
+
+hidden_element = browser.find_element_by_name('o-footer-legal-info__container') #this one is not
+if hidden_element.is_displayed():
+  print "Element found"
+else:
+  print "Element not found"
 
 network_logs = browser.execute_script("return window.performance.getEntries();")
 total_bytes = []
