@@ -26,10 +26,7 @@ WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return do
 browser.execute_script("window.scrollTo(0, 4000);")
 
 hidden_element = browser.find_elements_by_class_name('col-content')
-if hidden_element.is_displayed():
-  print "Element found"
-else:
-  print "Element not found"
+print(hidden_element)
 
 network_logs = browser.execute_script("return window.performance.getEntries();")
 total_bytes = []
