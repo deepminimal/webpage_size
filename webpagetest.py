@@ -41,15 +41,14 @@ try:
   WebDriverWait(browser, 30).until(EC.visibility_of_element_located((By.XPATH, "//a[@class='o-footer-legal-info__container']")));
 except Exception as e:
   print(str(e))
-newtwork_logs = {}
-newtwork_logs = browser.execute_script("return window.performance.getEntries();")
+
+network_logs = browser.execute_script("return window.performance.getEntries();")
 print(network_logs)
 total_bytes = []
 total_bytes2 = []
 total_bytes3 = []
-newtwork_logs = []
-print(len(newtwork_logs))
-for entry in newtwork_logs:
+print(len(network_logs))
+for entry in network_logs:
   if "transferSize" in str(entry):
     r = re.search(r"transferSize\':(.*?),", str(entry))
     r2 = re.search(r"encodedBodySize\':(.*?),", str(entry))
