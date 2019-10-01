@@ -20,11 +20,11 @@ browser.implicitly_wait(60)
 browser.set_page_load_timeout(60)
 browser.set_window_size(1920, 1080)
 browser.get('https://ostin.com')
-print("start readystate")
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
-print("start scrollHeight")
-#WebDriverWait(browser, 15).until(lambda driver: driver.execute_script("window.scrollTo(0, document.body.scrollHeight); return document.body.scrollHeight;"))
-newtwork_logs = browser.execute_script("var network = performance.getEntries() || {}; return network;")
+WebDriverWait(browser, 15).until(lambda driver: driver.execute_script("window.scrollTo(0, document.body.scrollHeight); return document.body.scrollHeight;"))
+newtwork_logs = browser.execute_script("return window.performance.getEntries();")
+element_present = EC.presence_of_element_located((By.ID, "o-footer-legal-info__container"))
+WebDriverWait(browser, 30).until(element_present)
 total_bytes = []
 total_bytes2 = []
 total_bytes3 = []
