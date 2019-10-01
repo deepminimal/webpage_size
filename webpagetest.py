@@ -40,12 +40,9 @@ print("encodedDataLength: ", str(sum(total_bytes)))
 with open('/usr/share/zabbix/newtwork_logs.json', 'w') as outfile:
     json.dump(newtwork_logs, outfile)
     
-test = json.dumps(browser_preformance_log)
-print(type(test))
-test2 = json.loads(test)
-print(type(test2))
+browser_preformance_log_clean = json.dumps(browser_preformance_log)
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
-    outfile.write(test)
+    outfile.write(browser_preformance_log_clean.replace('\\', ''))
 #browser.save_screenshot("/usr/share/zabbix/screenshot.png")
 #browser.find_element_by_tag_name('body').screenshot("/usr/share/zabbix/screenshot2.png")
 browser.close()
