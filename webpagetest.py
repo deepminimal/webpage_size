@@ -28,7 +28,8 @@ for entry in newtwork_logs:
     if (int(r.group(1)) == 0):
       r = re.search(r"decodedBodySize\':(.*?),", str(entry))
       total_bytes.append(int(r.group(1)))
-    total_bytes.append(int(r.group(1)))
+    else:
+      total_bytes.append(int(r.group(1)))
 print("transferSize: ", str(sum(total_bytes)))
 total_bytes = []
 browser_preformance_log = browser.get_log('performance')
