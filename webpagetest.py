@@ -25,7 +25,7 @@ print(newtwork_logs)
 print("--------------------------------------------------")
 for entry in newtwork_logs:
   if "transferSize" in str(entry):
-    r1 = re.search(r"transferSize\':(.*?),", str(entry))
+    r = re.search(r"transferSize\':(.*?),", str(entry))
     total_bytes.append(int(r.group(1)))
 print("transferSize: %s", str(sum(total_bytes1)))
 #logs = browser.get_log('performance')
