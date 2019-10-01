@@ -9,6 +9,7 @@ import chromedriver_binary
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
+import bs4 as bs
 
 print("start new")
 options = webdriver.ChromeOptions()
@@ -30,6 +31,9 @@ try:
 
 except TimeoutException:
     print "Timed out waiting for page to load"
+html = browser.execute_script('return document.documentElement.outerHTML')
+soup = bs.BeautifulSoup(html, 'html.parser')
+print(soup.prettify())
 network_logs = browser.execute_script("return window.performance.getEntries();")
 total_bytes = []
 total_bytes2 = []
