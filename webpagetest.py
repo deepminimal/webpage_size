@@ -20,17 +20,24 @@ browser.set_window_size(1920, 1080)
 browser.get('https://ostin.com/')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 total_bytes = []
+total_bytes2 = []
+total_bytes3 = []
 newtwork_logs = []
 newtwork_logs = browser.execute_script("var network = performance.getEntries() || {}; return network;")
 for entry in newtwork_logs:
   if "transferSize" in str(entry):
-    r = re.search(r"decodedBodySize\':(.*?),", str(entry))
+    r = re.search(r"transferSize\':(.*?),", str(entry))
+    total_bytes3.append(int(r.group(1)))
     if (int(r.group(1)) == 0):
-      r = re.search(r"decodedBodySize\':(.*?),", str(entry))
-      total_bytes.append(int(r.group(1)))
+      r2 = re.search(r"decodedBodySize\':(.*?),", str(entry))
+      total_bytes.append(int(r2.group(1)))
+      total_bytes2.append(int(r2.group(1)))
     else:
       total_bytes.append(int(r.group(1)))
-print("transferSize: ", str(sum(total_bytes)))
+print("transferSize if not 0 + decodedBodySize  : ", str(sum(total_bytes)))
+print("decodedBodySize: ", str(sum(total_bytes2)))
+print("transferSize only: ", str(sum(total_bytes3)))
+
 total_bytes = []
 browser_preformance_log = browser.get_log('performance')
 for entry in browser_preformance_log:
