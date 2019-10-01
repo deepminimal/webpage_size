@@ -25,7 +25,7 @@ WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return do
 # Get scroll height
 browser.execute_script("window.scrollTo(0, 4000);")
 
-hidden_element = browser.find_element_by_name('o-footer-legal-info__container') #this one is not
+hidden_element = browser.find_element_by_name('.o-footer-legal-info__container') #this one is not
 if hidden_element.is_displayed():
   print "Element found"
 else:
