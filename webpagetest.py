@@ -63,6 +63,6 @@ file = open("/usr/share/zabbix/browser_preformance_log.json", "r")
 string = file.read() 
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
     outfile.write(string.replace('\"', '"'))
-.save_screenshot("/usr/share/zabbix/screenshot.png")
+browser.save_screenshot("/usr/share/zabbix/screenshot.png")
 browser.close()
 browser.quit()
