@@ -45,7 +45,7 @@ print(type(test))
 test2 = json.loads(test)
 print(type(test2))
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
-    outfile.write(browser_preformance_log)
+    outfile.write(test)
 #browser.save_screenshot("/usr/share/zabbix/screenshot.png")
 #browser.find_element_by_tag_name('body').screenshot("/usr/share/zabbix/screenshot2.png")
 browser.close()
