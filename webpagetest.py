@@ -21,7 +21,7 @@ browser.get('https://ostin.com')
 print("start readystate")
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 print("start scrollHeight")
-WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("window.scrollTo(0, document.body.scrollHeight);"))
+WebDriverWait(browser, 5).until(lambda driver: driver.execute_script("window.scrollTo(0, document.body.scrollHeight);"))
 newtwork_logs = browser.execute_script("var network = performance.getEntries() || {}; return network;")
 total_bytes = []
 total_bytes2 = []
