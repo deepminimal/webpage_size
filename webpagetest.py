@@ -27,7 +27,7 @@ for entry in newtwork_logs:
   if "transferSize" in str(entry):
     r = re.search(r"transferSize\':(.*?),", str(entry))
     total_bytes.append(int(r.group(1)))
-print("transferSize: %s", str(sum(total_bytes1)))
+print("transferSize: %s", str(sum(total_bytes)))
 #logs = browser.get_log('performance')
 #for entry in browser.get_log('performance'):
 #        if "encodedDataLength" in str(entry):
@@ -35,6 +35,6 @@ print("transferSize: %s", str(sum(total_bytes1)))
 #            total_bytes.append(int(r.group(1)))
 #print("encodedDataLength: ", str(sum(total_bytes)))
 
-browser.save_screenshot("screenshot.png")
+browser.save_screenshot("/usr/share/zabbix/screenshot.png")
 browser.close()
 browser.quit()
