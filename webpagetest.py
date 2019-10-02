@@ -9,23 +9,33 @@ import chromedriver_binary
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
-
+from browsermobproxy import Server
 
 print("start new")
+server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy")
+server.start()
+proxy = server.create_proxy()
+
+
 options = webdriver.ChromeOptions()
 options.add_argument('--no-sandbox')
 options.add_argument('--headless')
 options.add_argument('--disable-dev-shm-usage')
 
+
+
 d = DesiredCapabilities.CHROME
 d['goog:loggingPrefs'] = { 'performance':'ALL' }
-browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.set_page_load_timeout(120)
 browser.maximize_window()
+profile = webdriver.Chrome(desired_capabilities=d, options=options)
+profile.set_proxy(self.proxy.selenium_proxy())
+browser = webdriver.Chrome(chrome_profile=profile,desired_capabilities=d, options=options)
+proxy.new_har("https://ostin.com", options={'captureHeaders': True})
 browser.get('https://ostin.com')
-browser.implicitly_wait(60)
-wait_time = 0
-
+result = json.dumps(proxy.har, ensure_ascii=False)
+with open('/usr/share/zabbix/proxy.json', 'w') as outfile:
+    outfile.write(result)
 S = lambda X: browser.execute_script('return document.body.parentNode.scroll'+X)
 network_logs = browser.execute_script("return window.performance.getEntries();")
 total_bytes = []
@@ -60,25 +70,6 @@ browser_preformance_log_clean = json.dumps(str(browser_preformance_log).replace(
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
     outfile.write(browser_preformance_log_clean)
 browser.save_screenshot("/usr/share/zabbix/screenshot.png")
-
-sizes = browser.execute_script("""
-  return performance.getEntries()
-    .filter(e => e.entryType==='navigation' || e.entryType==='resource')
-    .map(e=> ([e.name, e.transferSize]));
-  """)
-#print("Transferred size for the main page and each resources: ", sizes)
-
-sizes = browser.execute_script("""
-  return performance.getEntriesByType('navigation')[0].transferSize;
-  """)
-print("Transferred size for the main page only: ", sizes)
-
-sizes = browser.execute_script("""
-  return performance.getEntries()
-    .filter(e => e.entryType==='navigation' || e.entryType==='resource')
-    .reduce((acc, e) => acc + e.transferSize, 0)
-  """)
-#print("Total transferred size for the main page and resources: ", sizes)
 browser.close()
 browser.quit()
 os.system("pkill -9 -f chrom")
