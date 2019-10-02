@@ -30,7 +30,11 @@ wait_time = 0
 #WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 browser.execute_script("window.scrollTo(0, 5000);")
 #WebDriverWait(browser, 60).until(EC.visibility_of_all_elements_located(By.CLASS_NAME, 'o-footer-contacts-social__container')))
-WebDriverWait(browser,30).until(EC.visibility_of_element_located((By.CLASS_NAME, "bottom-menu__social-item fb")))
+try:
+  WebDriverWait(browser,60).until(EC.visibility_of_element_located((By.CLASS_NAME, "bottom-menu__social-item fb")))
+except:
+  print("Timeout")
+  
 network_logs = browser.execute_script("return window.performance.getEntries();")
 total_bytes = []
 total_bytes2 = []
