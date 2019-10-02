@@ -10,8 +10,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 import bs4 as bs
+from pyvirtualdisplay import Display
+
 
 print("start new")
+display = Display(visible=0, size=(1920, 1080))
+display.start()
+
 options = webdriver.ChromeOptions()
 options.add_argument('--no-sandbox')
 options.add_argument('--headless')
@@ -22,7 +27,6 @@ d['goog:loggingPrefs'] = { 'performance':'ALL' }
 browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.set_page_load_timeout(120)
 browser.maximize_window()
-browser.set_window_size(1920, 1080)
 browser.get('https://ostin.com')
 browser.implicitly_wait(60)
 wait_time = 0
@@ -37,7 +41,7 @@ except:
 
 S = lambda X: browser.execute_script('return document.body.parentNode.scroll'+X)
 browser.set_window_size(S('Width'),S('Height')) # May need manual adjustment
-browser.find_element_by_tag_name('body').screenshot('/usr/share/zabbix/screenshot4.png')
+#browser.find_element_by_tag_name('body').screenshot('/usr/share/zabbix/screenshot4.png')
 
 network_logs = browser.execute_script("return window.performance.getEntries();")
 total_bytes = []
@@ -80,4 +84,5 @@ browser.execute_script("window.scrollTo(0, 4000);")
 browser.save_screenshot("/usr/share/zabbix/screenshot3.png")
 browser.close()
 browser.quit()
+display.stop()
 os.system("pkill -9 -f chrom")
