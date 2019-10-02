@@ -22,8 +22,14 @@ driver.set_window_size(1920, 1080)
 proxy.new_har("https://ostin.com", options={'captureHeaders': True, 'captureContent':True, 'captureBinaryContent':True})
 driver.get("https://ostin.com")    
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
-
+total_bytes = []
 result = json.dumps(proxy.har, ensure_ascii=True)
+for entry in result:
+        if "bodySize" in str(entry):
+            r = re.search(r'bodySize\":(.*?),', str(entry))
+            total_bytes.append(int(r.group(1)))
+print("bodySize: ", str(sum(total_bytes)))
+
 with open('/usr/share/zabbix/result.json', 'w') as outfile:
   outfile.write(result)
 
