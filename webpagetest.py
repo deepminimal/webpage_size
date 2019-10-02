@@ -29,7 +29,7 @@ try:
     element_present = EC.presence_of_element_located((By.CLASS_NAME, 'o-footer-contacts-social__container'))
     WebDriverWait(browser, 30).until(element_present)
 
-except TimeoutException:
+except:
     print "Timed out waiting for page to load"
 html = browser.execute_script('return document.documentElement.outerHTML')
 soup = bs.BeautifulSoup(html, 'html.parser')
