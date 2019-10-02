@@ -18,13 +18,15 @@ chrome_options.add_argument('--headless')
 chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument("--proxy-server={0}".format(url))
 driver = webdriver.Chrome(chromedriver,chrome_options =chrome_options)
+driver.set_window_size(1920, 1080)
 proxy.new_har("https://ostin.com", options={'captureHeaders': True})
 driver.get("https://ostin.com")    
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 
 result = json.dumps(proxy.har, ensure_ascii=False)
+with open('/usr/share/zabbix/result.json', 'w') as outfile:
+outfile.write(result)
 
-print result
 driver.save_screenshot("/usr/share/zabbix/screenshot.png")
 proxy.stop()    
 driver.quit()
