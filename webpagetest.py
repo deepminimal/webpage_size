@@ -24,6 +24,7 @@ browser.set_page_load_timeout(120)
 browser.maximize_window()
 browser.set_window_size(1920, 1080)
 browser.get('https://ostin.com')
+browser.implicitly_Wait(10)
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 
 browser.execute_script("window.scrollTo(0, 3800);")
@@ -34,7 +35,7 @@ try:
     element.click()
 except:
     print "Timed out waiting for page to load"
-
+browser.implicitly_Wait(30)
 network_logs = browser.execute_script("return window.performance.getEntries();")
 total_bytes = []
 total_bytes2 = []
@@ -67,6 +68,7 @@ with open('/usr/share/zabbix/network_logs.json', 'w') as outfile:
 browser_preformance_log_clean = json.dumps(str(browser_preformance_log).replace('\"','"'))
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
     outfile.write(browser_preformance_log_clean)
+browser.implicitly_Wait(40)
 browser.execute_script("window.scrollTo(0, 2000);")
 browser.save_screenshot("/usr/share/zabbix/screenshot.png")
 browser.execute_script("window.scrollTo(0, 3000);")
