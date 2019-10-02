@@ -7,14 +7,14 @@ import urlparse
 server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy")
 server.start()
 proxy = server.create_proxy()
-options = webdriver.ChromeOptions()
-options.add_argument('--no-sandbox')
-options.add_argument('--headless')
-options.add_argument('--disable-dev-shm-usage')
+
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-dev-shm-usage')
 chromedriver = "./chromedriver"
 os.environ["webdriver.chrome.driver"] = chromedriver
 url = urlparse.urlparse (proxy.proxy).path
-chrome_options = webdriver.ChromeOptions(options=options)
+chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--proxy-server={0}".format(url))
 driver = webdriver.Chrome(chromedriver,chrome_options =chrome_options)
 proxy.new_har("https://ostin.com", options={'captureHeaders': True})
