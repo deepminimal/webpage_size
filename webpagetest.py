@@ -69,24 +69,25 @@ browser_preformance_log_clean = json.dumps(str(browser_preformance_log).replace(
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
     outfile.write(browser_preformance_log_clean)
 browser.save_screenshot("/usr/share/zabbix/screenshot.png")
+
 sizes = browser.execute_script("""
   return performance.getEntries()
     .filter(e => e.entryType==='navigation' || e.entryType==='resource')
     .map(e=> ([e.name, e.transferSize]));
   """)
-print("Transferred size for the main page and each resources: ", sizes)
+#print("Transferred size for the main page and each resources: ", sizes)
 
-sizes = driver.execute_script("""
+sizes = browser.execute_script("""
   return performance.getEntriesByType('navigation')[0].transferSize;
   """)
 print("Transferred size for the main page only: ", sizes)
 
-sizes = driver.execute_script("""
+sizes = browser.execute_script("""
   return performance.getEntries()
     .filter(e => e.entryType==='navigation' || e.entryType==='resource')
     .reduce((acc, e) => acc + e.transferSize, 0)
   """)
-print("Total transferred size for the main page and resources: ", sizes)
+#print("Total transferred size for the main page and resources: ", sizes)
 browser.close()
 browser.quit()
 os.system("pkill -9 -f chrom")
