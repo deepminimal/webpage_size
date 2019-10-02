@@ -23,7 +23,7 @@ proxy.new_har("https://ostin.com", options={'captureHeaders': True})
 driver.get("https://ostin.com")    
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 
-result = json.dumps(proxy.har, ensure_ascii=False)
+result = json.dumps(proxy.har, ensure_ascii=True)
 with open('/usr/share/zabbix/result.json', 'w') as outfile:
   outfile.write(result)
 
