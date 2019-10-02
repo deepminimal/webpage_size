@@ -15,13 +15,15 @@ print("start new")
 options = webdriver.ChromeOptions()
 options.add_argument('--no-sandbox')
 options.add_argument('--headless')
+
 #options.add_argument('--disable-dev-shm-usage')
 d = DesiredCapabilities.CHROME
 d['goog:loggingPrefs'] = { 'performance':'ALL' }
 browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.set_page_load_timeout(120)
-browser.set_window_size(1920, 1080)
-browser.get('https://sportmaster.ru')
+browser.maximize_window()
+#browser.set_window_size(1920, 1080)
+browser.get('https://ostin.com')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 
 browser.execute_script("window.scrollTo(0, 4000);")
@@ -31,9 +33,7 @@ try:
 
 except:
     print "Timed out waiting for page to load"
-html = browser.execute_script('return document.documentElement.outerHTML')
-soup = bs.BeautifulSoup(html, 'html.parser')
-print(soup.prettify())
+
 network_logs = browser.execute_script("return window.performance.getEntries();")
 total_bytes = []
 total_bytes2 = []
