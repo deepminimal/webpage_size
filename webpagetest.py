@@ -21,7 +21,7 @@ d['goog:loggingPrefs'] = { 'performance':'ALL' }
 browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.set_page_load_timeout(120)
 browser.set_window_size(1920, 1080)
-browser.get('https://ostin.com')
+browser.get('https://sportmaster.ru')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 
 browser.execute_script("window.scrollTo(0, 4000);")
