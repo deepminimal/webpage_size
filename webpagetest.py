@@ -29,7 +29,7 @@ wait_time = 0
 print("start load")
 while wait_time < 30:
   # Scroll down to bottom to load contents, unnecessary for everyone
-  driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+  browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
   wait_time += 0.1
   time.sleep(0.1)
 print('Load Complete.')
