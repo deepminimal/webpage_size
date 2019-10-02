@@ -34,7 +34,11 @@ try:
   WebDriverWait(browser,60).until(EC.visibility_of_element_located((By.CLASS_NAME, "bottom-menu__social-item fb")))
 except:
   print("Timeout")
-  
+
+S = lambda X: browser.execute_script('return document.body.parentNode.scroll'+X)
+browser.set_window_size(S('Width'),S('Height')) # May need manual adjustment
+browser.find_element_by_tag_name('body').screenshot('/usr/share/zabbix/screenshot4.png')
+
 network_logs = browser.execute_script("return window.performance.getEntries();")
 total_bytes = []
 total_bytes2 = []
@@ -74,9 +78,6 @@ browser.execute_script("window.scrollTo(0, 3000);")
 browser.save_screenshot("/usr/share/zabbix/screenshot2.png")
 browser.execute_script("window.scrollTo(0, 4000);")
 browser.save_screenshot("/usr/share/zabbix/screenshot3.png")
-S = lambda X: browser.execute_script('return document.body.parentNode.scroll'+X)
-browser.set_window_size(S('Width'),S('Height')) # May need manual adjustment
-browser.find_element_by_tag_name('body').screenshot('/usr/share/zabbix/screenshot4.png')
 browser.close()
 browser.quit()
 os.system("pkill -9 -f chrom")
