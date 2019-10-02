@@ -26,16 +26,10 @@ browser.set_window_size(1920, 1080)
 browser.get('https://ostin.com')
 browser.implicitly_wait(60)
 wait_time = 0
-print("start load")
-while wait_time < 30:
-  # Scroll down to bottom to load contents, unnecessary for everyone
-  browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-  wait_time += 0.1
-  time.sleep(0.1)
-print('Load Complete.')
-WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 
-browser.execute_script("window.scrollTo(0, 3800);")
+#WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
+WebDriverWait(browser, 60).until(EC.visibility_of_all_elements_located((By.XPATH, "[@class='o-footer-contacts-social__container' ")))))
+browser.execute_script("window.scrollTo(0, 5000);")
 try:
     element_present = EC.element_to_be_clickable((By.CLASS_NAME, 'o-footer-contacts-social__container'))
     WebDriverWait(browser, 60).until(element_present)
