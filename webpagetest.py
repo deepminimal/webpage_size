@@ -28,7 +28,7 @@ browser.implicitly_wait(60)
 wait_time = 0
 
 #WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
-WebDriverWait(browser, 60).until(EC.visibility_of_all_elements_located((By.XPATH, "[@class='o-footer-contacts-social__container' ")))))
+WebDriverWait(browser, 60).until(EC.visibility_of_all_elements_located(By.XPATH, "[@class='o-footer-contacts-social__container'"))
 browser.execute_script("window.scrollTo(0, 5000);")
 try:
     element_present = EC.element_to_be_clickable((By.CLASS_NAME, 'o-footer-contacts-social__container'))
