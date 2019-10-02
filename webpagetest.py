@@ -25,6 +25,14 @@ browser.maximize_window()
 browser.set_window_size(1920, 1080)
 browser.get('https://ostin.com')
 browser.implicitly_wait(60)
+wait_time = 0
+print("start load")
+while wait_time < 30:
+  # Scroll down to bottom to load contents, unnecessary for everyone
+  driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+  wait_time += 0.1
+  time.sleep(0.1)
+print('Load Complete.')
 WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 
 browser.execute_script("window.scrollTo(0, 3800);")
