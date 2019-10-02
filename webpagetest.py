@@ -67,7 +67,12 @@ with open('/usr/share/zabbix/network_logs.json', 'w') as outfile:
 browser_preformance_log_clean = json.dumps(str(browser_preformance_log).replace('\"','"'))
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
     outfile.write(browser_preformance_log_clean)
-browser.save_screenshot("/usr/share/zabbix/screenshot12.png")
+browser.execute_script("window.scrollTo(0, 2000);")
+browser.save_screenshot("/usr/share/zabbix/screenshot.png")
+browser.execute_script("window.scrollTo(0, 3000);")
+browser.save_screenshot("/usr/share/zabbix/screenshot2.png")
+browser.execute_script("window.scrollTo(0, 4000);")
+browser.save_screenshot("/usr/share/zabbix/screenshot3.png")
 browser.close()
 browser.quit()
 os.system("pkill -9 -f chrom")
