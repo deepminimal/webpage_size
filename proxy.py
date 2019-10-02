@@ -25,7 +25,7 @@ S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 
 result = json.dumps(proxy.har, ensure_ascii=False)
 with open('/usr/share/zabbix/result.json', 'w') as outfile:
-outfile.write(result)
+  outfile.write(result)
 
 driver.save_screenshot("/usr/share/zabbix/screenshot.png")
 proxy.stop()    
