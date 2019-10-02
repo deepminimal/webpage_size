@@ -24,8 +24,13 @@ driver.get("https://ostin.com")
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 total_bytes = []
 result = json.dumps(proxy.har, ensure_ascii=True)
+end = 0
 for entry in result:
-        print(entry)
+        end += 1
+        if (end == 2):
+          print(entry)
+        if (end == 1):
+          print(entry)
         if "bodySize" in str(entry):
             r = re.search(r'bodySize\":(.*?),', str(entry))
             total_bytes.append(int(r.group(1)))
