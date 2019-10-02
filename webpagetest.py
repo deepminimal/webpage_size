@@ -9,14 +9,9 @@ import chromedriver_binary
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
-import bs4 as bs
-from pyvirtualdisplay import Display
 
 
 print("start new")
-display = Display(visible=0, size=(1920, 1080))
-display.start()
-
 options = webdriver.ChromeOptions()
 options.add_argument('--no-sandbox')
 options.add_argument('--headless')
@@ -32,13 +27,11 @@ browser.implicitly_wait(60)
 wait_time = 0
 
 #WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
-browser.execute_script("window.scrollTo(0, 5000);")
 #WebDriverWait(browser, 60).until(EC.visibility_of_all_elements_located(By.CLASS_NAME, 'o-footer-contacts-social__container')))
 try:
   WebDriverWait(browser,60).until(EC.visibility_of_element_located((By.CLASS_NAME, "bottom-menu__social-item fb")))
 except:
   print("Timeout")
-
 S = lambda X: browser.execute_script('return document.body.parentNode.scroll'+X)
 browser.set_window_size(S('Width'),S('Height')) # May need manual adjustment
 #browser.find_element_by_tag_name('body').screenshot('/usr/share/zabbix/screenshot4.png')
@@ -75,14 +68,25 @@ with open('/usr/share/zabbix/network_logs.json', 'w') as outfile:
 browser_preformance_log_clean = json.dumps(str(browser_preformance_log).replace('\"','"'))
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
     outfile.write(browser_preformance_log_clean)
-
-browser.execute_script("window.scrollTo(0, 2000);")
 browser.save_screenshot("/usr/share/zabbix/screenshot.png")
-browser.execute_script("window.scrollTo(0, 3000);")
-browser.save_screenshot("/usr/share/zabbix/screenshot2.png")
-browser.execute_script("window.scrollTo(0, 4000);")
-browser.save_screenshot("/usr/share/zabbix/screenshot3.png")
+sizes = browser.execute_script("""
+  return performance.getEntries()
+    .filter(e => e.entryType==='navigation' || e.entryType==='resource')
+    .map(e=> ([e.name, e.transferSize]));
+  """)
+print("Transferred size for the main page and each resources: ", sizes)
+
+sizes = driver.execute_script("""
+  return performance.getEntriesByType('navigation')[0].transferSize;
+  """)
+print("Transferred size for the main page only: ", sizes)
+
+sizes = driver.execute_script("""
+  return performance.getEntries()
+    .filter(e => e.entryType==='navigation' || e.entryType==='resource')
+    .reduce((acc, e) => acc + e.transferSize, 0)
+  """)
+print("Total transferred size for the main page and resources: ", sizes)
 browser.close()
 browser.quit()
-display.stop()
 os.system("pkill -9 -f chrom")
