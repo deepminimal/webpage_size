@@ -23,7 +23,8 @@ proxy.new_har("https://ostin.com", options={'captureHeaders': True, 'captureCont
 driver.get("https://ostin.com")    
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 total_bytes = []
-result = json.dumps(proxy.har, ensure_ascii=True)
+#result = json.dumps(proxy.har, ensure_ascii=True)
+result = proxy.har
 for entry in result:
         print(entry)
         if "bodySize" in str(entry):
