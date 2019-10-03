@@ -34,7 +34,7 @@ r = re.findall(r'bodySize\":(.*?),', str(result))
 print(r)
 var =0
 for num in r:
-  var = var + int(r)
+  var = var + int(num)
 print("bodySize: ", str(var))
 
 #with open('/usr/share/zabbix/result.json', 'w') as outfile:
