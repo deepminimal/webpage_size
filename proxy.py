@@ -22,14 +22,14 @@ driver = webdriver.Chrome(chromedriver,chrome_options =chrome_options)
 driver.set_window_size(1920, 1080)
 proxy.new_har("https://ostin.com/", options={'captureHeaders': True, 'captureContent':True, 'captureBinaryContent':True})
 driver.get("https://ostin.com/")    
+WebDriverWait(driver, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 total_bytes = []
 
 result = json.dumps(proxy.har, ensure_ascii=True, indent=2)
 
-end = 0
-print(type(result))
 
+print(type(result))
 r = re.findall(r'bodySize\":(.*?),', str(result))
 print(r)
 var =0
