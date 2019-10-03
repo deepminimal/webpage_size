@@ -25,15 +25,9 @@ S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 total_bytes = []
 result = proxy.har
 #json.dumps(proxy.har, ensure_ascii=True)
-print(type(result))
-print(type(proxy.har))
 end = 0
 for entry in result:
-        end += 1
-        if (end == 2):
-          print(entry)
-        if (end == 1):
-          print(entry)
+        print(entry)
         if "bodySize" in str(entry):
             r = re.search(r'bodySize\":(.*?),', str(entry))
             total_bytes.append(int(r.group(1)))
