@@ -42,8 +42,8 @@ for entry in proxy.har['log']['entries']:
     if (mimeType[i] == entry['response']['content']['mimeType']):
       d[str(i)]["URL"].append(entry['response']['bodySize'])
       d[str(i)]["bodySize"].append(entry['request']['url'])
-      print(d)
-  
+      
+print(d)
 
        
 print("bodySize: ", str(sum(bodySize)))
