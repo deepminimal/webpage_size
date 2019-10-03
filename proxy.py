@@ -37,8 +37,8 @@ for num in r:
   var = var + int(num)
 print("bodySize: ", str(var))
 
-#with open('/usr/share/zabbix/result.json', 'w') as outfile:
-#  outfile.write(json.dumps(proxy.har, ensure_ascii=True, indent=2))
+with open('/usr/share/zabbix/result.json', 'w') as outfile:
+  outfile.write(json.dumps(proxy.har, ensure_ascii=True, indent=2))
 
 driver.save_screenshot("/usr/share/zabbix/screenshot.png")
 proxy.stop()    
