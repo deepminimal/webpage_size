@@ -32,7 +32,7 @@ bodySize = []
 for entry in proxy.har['log']['entries']:
   mimeType.append(entry['response']['content']['mimeType'])
   bodySize.append(int(entry['response']['bodySize']))
-print(list(set(b)))
+print(list(set(mimeType)))
 d = {}
 for entry in proxy.har['log']['entries']:
   for i in range(1, len(mimeType)):
