@@ -9,34 +9,33 @@ import chromedriver_binary
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
-from browsermobproxy import Server
+
 
 print("start new")
-server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy")
-server.start()
-proxy = server.create_proxy()
-
-
 options = webdriver.ChromeOptions()
 options.add_argument('--no-sandbox')
 options.add_argument('--headless')
-options.add_argument('--disable-dev-shm-usage')
 
-
-
+#options.add_argument('--disable-dev-shm-usage')
 d = DesiredCapabilities.CHROME
 d['goog:loggingPrefs'] = { 'performance':'ALL' }
+browser = webdriver.Chrome(desired_capabilities=d, options=options)
 browser.set_page_load_timeout(120)
 browser.maximize_window()
-profile = webdriver.Chrome(desired_capabilities=d, options=options)
-profile.set_proxy(self.proxy.selenium_proxy())
-browser = webdriver.Chrome(chrome_profile=profile,desired_capabilities=d, options=options)
-proxy.new_har("https://ostin.com", options={'captureHeaders': True})
 browser.get('https://ostin.com')
-result = json.dumps(proxy.har, ensure_ascii=False)
-with open('/usr/share/zabbix/proxy.json', 'w') as outfile:
-    outfile.write(result)
+browser.implicitly_wait(60)
+wait_time = 0
+
+#WebDriverWait(browser, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
+#WebDriverWait(browser, 60).until(EC.visibility_of_all_elements_located(By.CLASS_NAME, 'o-footer-contacts-social__container')))
+try:
+  WebDriverWait(browser,60).until(EC.visibility_of_element_located((By.CLASS_NAME, "bottom-menu__social-item fb")))
+except:
+  print("Timeout")
 S = lambda X: browser.execute_script('return document.body.parentNode.scroll'+X)
+browser.set_window_size(S('Width'),S('Height')) # May need manual adjustment
+#browser.find_element_by_tag_name('body').screenshot('/usr/share/zabbix/screenshot4.png')
+
 network_logs = browser.execute_script("return window.performance.getEntries();")
 total_bytes = []
 total_bytes2 = []
@@ -70,6 +69,7 @@ browser_preformance_log_clean = json.dumps(str(browser_preformance_log).replace(
 with open('/usr/share/zabbix/browser_preformance_log.json', 'w') as outfile:
     outfile.write(browser_preformance_log_clean)
 browser.save_screenshot("/usr/share/zabbix/screenshot.png")
+
 browser.close()
 browser.quit()
 os.system("pkill -9 -f chrom")
