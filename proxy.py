@@ -5,8 +5,8 @@ import os
 import json
 import urlparse
 import re
-dict = {'port': 3343}
-server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy", options=dict)
+#dict = {'port': 3343}
+server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy")#, options=dict)
 server.start()
 proxy = server.create_proxy()
 
