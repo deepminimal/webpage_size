@@ -28,11 +28,12 @@ result = proxy.har
 #json.dumps(proxy.har, ensure_ascii=True)
 end = 0
 for entry in result:
-
         if "bodySize" in str(result[entry]):
-
             r = re.search(r'bodySize\":(.*?),', str(result[entry]))
-            total_bytes.append(int(r.group(1)))
+            try:
+              total_bytes.append(int(r.group(1)))
+            except:
+              print("No found")
 print("bodySize: ", str(sum(total_bytes)))
 
 with open('/usr/share/zabbix/result.json', 'w') as outfile:
