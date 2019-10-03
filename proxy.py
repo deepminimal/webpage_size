@@ -24,6 +24,7 @@ driver.get("https://ostin.com")
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 total_bytes = []
 result = json.dumps(proxy.har, ensure_ascii=True)
+print(type(result))
 end = 0
 for entry in result:
         end += 1
