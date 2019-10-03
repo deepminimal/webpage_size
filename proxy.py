@@ -13,7 +13,7 @@ server.start()
 proxy = server.create_proxy()
 chromedriver = "./chromedriver"
 os.environ["webdriver.chrome.driver"] = chromedriver
-url = urlparse.urlparse (proxy.proxy).path
+url = urlparse.urlparse(proxy.proxy).path
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--headless')
@@ -26,8 +26,9 @@ driver.get("https://ostin.com/")
 WebDriverWait(driver, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
-result = json.dumps(proxy.har, ensure_ascii=True, indent=2)
-print(result['log']['entries'])
+result = json.dumps(proxy.har, ensure_ascii=True, indent=1)
+
+print(result['log'][0]['entries'])
 print(result['log']['entries'][0]['serverIPAddress'])
 
         
