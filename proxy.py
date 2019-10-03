@@ -10,8 +10,8 @@ from collections import defaultdict
 
 os.system("pkill -9 -f browsermob-proxy")
 os.system("pkill -9 -f chro")
-dict = {'host': '173.249.31.110', 'port': 3343}
-server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy", options=dict)
+proxy_optoins = {'port': 3343}
+server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy", options=proxy_optoins)
 server.start()
 proxy = server.create_proxy()
 chromedriver = "./chromedriver"
