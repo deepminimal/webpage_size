@@ -24,12 +24,8 @@ proxy.new_har("https://ostin.com/", options={'captureHeaders': True, 'captureCon
 driver.get("https://ostin.com/")    
 WebDriverWait(driver, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
-total_bytes = []
-
+driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
 result = json.dumps(proxy.har, ensure_ascii=True, indent=2)
-
-
-print(type(result))
 r = re.findall(r'bodySize\":(.*?),', str(result))
 print(r)
 var =0
@@ -39,7 +35,6 @@ print("bodySize: ", str(var))
 
 with open('/usr/share/zabbix/result.json', 'w') as outfile:
   outfile.write(json.dumps(proxy.har, ensure_ascii=True, indent=2))
-
-driver.save_screenshot("/usr/share/zabbix/screenshot.png")
+driver.find_element_by_tag_name('body').screenshot('/usr/share/zabbix/screenshot.png')
 server.stop()    
 driver.quit()
