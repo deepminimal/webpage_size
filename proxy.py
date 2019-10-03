@@ -27,6 +27,8 @@ total_bytes = []
 result = proxy.har
 #json.dumps(proxy.har, ensure_ascii=True)
 end = 0
+for x, y in result.items():
+  print(x)
 for entry in result:
         if "bodySize" in str(result[entry]):
             r = re.search(r'bodySize\":(.*?),', str(result[entry]))
