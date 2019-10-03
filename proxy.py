@@ -34,7 +34,7 @@ for num in r:
 print("bodySize: ", str(var))
 
 r = re.findall(r'headersSize\":(.*?),', str(result))
-print(tipe(r))
+print(type(r))
 var1 =0
 for num in r:
   var1 = var1 + int(num)
