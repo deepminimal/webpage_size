@@ -25,25 +25,22 @@ driver.get("https://ostin.com")
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 total_bytes = []
 result = proxy.har
-#json.dumps(proxy.har, ensure_ascii=True)
+result = json.dumps(proxy.har, ensure_ascii=True, indent=2)
+
 end = 0
 print(type(result))
-
-for x, y in result.items():
-  print(x)
-x = result.keys()
-print(x)
+string = 
 for entry in result:
-        if "bodySize" in str(result[entry]):
-            r = re.search(r'bodySize\":(.*?),', str(result[entry]))
+        if "bodySize" in str(entry):
+            r = re.search(r'bodySize\":(.*?),', str(entry))
             try:
               total_bytes.append(int(r.group(1)))
             except:
               print("No found")
 print("bodySize: ", str(sum(total_bytes)))
 
-with open('/usr/share/zabbix/result.json', 'w') as outfile:
-  outfile.write(json.dumps(proxy.har, ensure_ascii=True, indent=4))
+#with open('/usr/share/zabbix/result.json', 'w') as outfile:
+#  outfile.write(json.dumps(proxy.har, ensure_ascii=True, indent=2))
 
 driver.save_screenshot("/usr/share/zabbix/screenshot.png")
 proxy.stop()    
