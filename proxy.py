@@ -21,7 +21,7 @@ chrome_options.add_argument("--proxy-server={0}".format(url))
 driver = webdriver.Chrome(chromedriver,chrome_options =chrome_options)
 driver.set_window_size(1920, 1080)
 proxy.new_har("https://ostin.com/dist/0891336a5dd901c83e1a.manifest.js", options={'captureHeaders': True, 'captureContent':True, 'captureBinaryContent':True})
-driver.get("https://ostin.com")    
+driver.get("https://ostin.com/dist/0891336a5dd901c83e1a.manifest.js")    
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 total_bytes = []
 
