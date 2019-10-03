@@ -38,7 +38,7 @@ var1 =0
 for num in r:
   var1 = var1 + int(num)
 print("headersSize: ", str(var))
-print("Without headersSize: ", str(var - var1)
+print("Without headersSize: ", str(var - var1))
 r = re.findall(r'url\":(.*?),', str(result))
 print(r)
 
