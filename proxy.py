@@ -33,7 +33,7 @@ for entry in proxy.har['log']['entries']:
   mimeType.append(entry['response']['content']['mimeType'])
   bodySize.append(int(entry['response']['bodySize']))
 print(list(set(mimeType)))
-d = {}
+d = хъ
 for entry in proxy.har['log']['entries']:
   for i in range(1, len(mimeType)):
     if (mimeType[i] == entry['response']['content']['mimeType']):
