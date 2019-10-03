@@ -35,7 +35,9 @@ bodySize = []
 for entry in proxy.har['log']['entries']:
   mimeType.append(entry['response']['content']['mimeType'])
   bodySize.append(int(entry['response']['bodySize']))
+
 json_data = defaultdict(dict)
+
 for type in mimeType:
   json_data[str(type)]
   
@@ -44,7 +46,6 @@ for entry in proxy.har['log']['entries']:
   keys = defaultdict(list)
   for i in range(1, len(mimeType)):
     if (mimeType[i] == entry['response']['content']['mimeType']):
-      
       keys["bodySize"].append(entry['response']['bodySize'])
       keys["URL"].append(entry['request']['url'])
 json_data = keys 
