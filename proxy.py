@@ -44,8 +44,9 @@ for type in mimeType:
 for entry in proxy.har['log']['entries']:
   for i in range(1, len(mimeType)):
     if (mimeType[i] == entry['response']['content']['mimeType']):
-      json_data[str(i)]["URL"].append(entry['response']['bodySize'])
-      json_data[str(i)]["bodySize"].append(entry['request']['url'])
+      
+      json_data[mimeType[i]]["URL"].append(entry['response']['bodySize'])
+      json_data[mimeType[i]]["bodySize"].append(entry['request']['url'])
       
 print(json_data)
 
