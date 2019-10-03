@@ -28,10 +28,7 @@ result = proxy.har
 #json.dumps(proxy.har, ensure_ascii=True)
 end = 0
 for entry in result:
-        
-        if (end < 2):
-          print(str(result[entry]))
-        end += 1
+
         if "bodySize" in str(result[entry]):
 
             r = re.search(r'bodySize\":(.*?),', str(result[entry]))
