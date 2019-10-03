@@ -32,7 +32,7 @@ print(type(result))
 
 r = re.findall(r'bodySize\":(.*?),', str(result))
 print(r)
-print("bodySize: ", str(sum(total_bytes)))
+print("bodySize: ", str(sum(r)))
 
 #with open('/usr/share/zabbix/result.json', 'w') as outfile:
 #  outfile.write(json.dumps(proxy.har, ensure_ascii=True, indent=2))
