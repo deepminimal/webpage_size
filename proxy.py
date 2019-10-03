@@ -30,7 +30,7 @@ result = json.dumps(proxy.har, ensure_ascii=True, indent=2)
 end = 0
 print(type(result))
 
-r = re.findall(r'bodySize\":(.*?),', str(entry))
+r = re.findall(r'bodySize\":(.*?),', str(result))
 print(r)
 print("bodySize: ", str(sum(total_bytes)))
 
