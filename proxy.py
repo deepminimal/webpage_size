@@ -5,6 +5,8 @@ import os
 import json
 import urlparse
 import re
+from collections import defaultdict
+
 os.system("pkill -9 -f browsermob-proxy")
 os.system("pkill -9 -f chro")
 dict = {'host': '173.249.31.110', 'port': 3343}
@@ -33,13 +35,13 @@ for entry in proxy.har['log']['entries']:
   mimeType.append(entry['response']['content']['mimeType'])
   bodySize.append(int(entry['response']['bodySize']))
 print(list(set(mimeType)))
-d = {}
+d = defaultdict(list)
 
 for entry in proxy.har['log']['entries']:
   for i in range(1, len(mimeType)):
     if (mimeType[i] == entry['response']['content']['mimeType']):
-      d[str(i)]["URL"]=int(entry['response']['bodySize'])
-      d[str(i)]["bodySize"] = str(entry['request']['url'])
+      d[str(i)]["URL"].append(entry['response']['bodySize'])
+      d[str(i)]["bodySize"].append(entry['request']['url'])
       print(d)
   
 
