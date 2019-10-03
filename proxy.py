@@ -5,12 +5,12 @@ import os
 import json
 import urlparse
 import re
-#dict = {'port': 3343}
-server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy")#, options=dict)
+os.system("pkill -9 -f browsermob-proxy")
+os.system("pkill -9 -f chro")
+dict = {'port': 3343}
+server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy"), options=dict)
 server.start()
 proxy = server.create_proxy()
-
-
 chromedriver = "./chromedriver"
 os.environ["webdriver.chrome.driver"] = chromedriver
 url = urlparse.urlparse (proxy.proxy).path
@@ -43,3 +43,5 @@ with open('/usr/share/zabbix/result.json', 'w') as outfile:
 driver.find_element_by_tag_name('body').screenshot('/usr/share/zabbix/screenshot.png')
 server.stop()    
 driver.quit()
+os.system("pkill -9 -f browsermob-proxy")
+os.system("pkill -9 -f chro")
