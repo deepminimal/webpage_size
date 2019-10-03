@@ -28,11 +28,20 @@ S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
 result = json.dumps(proxy.har, ensure_ascii=True, indent=2)
 r = re.findall(r'bodySize\":(.*?),', str(result))
-print(r)
 var =0
 for num in r:
   var = var + int(num)
 print("bodySize: ", str(var))
+
+r = re.findall(r'bodySize\":(.*?),', str(result))
+var1 =0
+for num in r:
+  var1 = var1 + int(num)
+print("headersSize: ", str(var))
+print("Without headersSize: ", str(var - var1)
+r = re.findall(r'url\":(.*?),', str(result))
+print(r)
+
 
 with open('/usr/share/zabbix/result.json', 'w') as outfile:
   outfile.write(json.dumps(proxy.har, ensure_ascii=True, indent=2))
