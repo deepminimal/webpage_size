@@ -34,13 +34,14 @@ for num in r:
 print("bodySize: ", str(var))
 
 r = re.findall(r'headersSize\":(.*?),', str(result))
+print(tipe(r))
 var1 =0
 for num in r:
   var1 = var1 + int(num)
 print("headersSize: ", str(var))
 print("Without headersSize: ", str(var - var1))
-r = re.findall(r'url\":(.*?),', str(result))
-print(r)
+#r = re.findall(r'url\":(.*?),', str(result))
+
 
 
 with open('/usr/share/zabbix/result.json', 'w') as outfile:
