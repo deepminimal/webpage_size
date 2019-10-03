@@ -4,8 +4,8 @@ import os
 import json
 import urlparse
 import re
-
-server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy")
+dict = {'port': 3343}
+server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy", options=dict)
 server.start()
 proxy = server.create_proxy()
 
@@ -41,5 +41,5 @@ with open('/usr/share/zabbix/result.json', 'w') as outfile:
   outfile.write(json.dumps(proxy.har, ensure_ascii=True, indent=2))
 
 driver.save_screenshot("/usr/share/zabbix/screenshot.png")
-proxy.stop()    
+server.stop()    
 driver.quit()
