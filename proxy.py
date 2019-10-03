@@ -28,6 +28,7 @@ S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
 result = json.dumps(proxy.har, ensure_ascii=True, indent=2)
 print(type(proxy.har))
+print(dic.has_key('bodySize'))
 r = re.findall(r'bodySize\":(.*?),', str(result))
 var =0
 for num in r:
