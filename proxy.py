@@ -24,7 +24,7 @@ proxy.new_har("https://ostin.com", options={'captureHeaders': True, 'captureCont
 driver.get("https://ostin.com")    
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 total_bytes = []
-result = proxy.har
+
 result = json.dumps(proxy.har, ensure_ascii=True, indent=2)
 
 end = 0
