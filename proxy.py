@@ -27,9 +27,9 @@ WebDriverWait(driver, 60).until(lambda driver: driver.execute_script("return doc
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
 result = json.dumps(proxy.har, ensure_ascii=True, indent=2)
-for entry in result['log']['entries']:
-    if len(entry['response']['headers']) > 0:
-        print entry['response']['headers']
+print(result['log']['entries'])
+print(result['log']['entries'][0]['serverIPAddress'])
+
         
 r = re.findall(r'bodySize\":(.*?),', str(result))
 var =0
