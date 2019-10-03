@@ -25,6 +25,8 @@ driver.get("https://ostin.com/")
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 total_bytes = []
 
+string = driver.execute_script('$(document).ready(function(){var url = 'http://elastic-1.productgateost.marathon.mesos.sportmaster.ru:9200/_cluster/health";$.getJSON(url, function(data){return data;});});'
+print(string)
 result = json.dumps(proxy.har, ensure_ascii=True, indent=2)
 
 end = 0
