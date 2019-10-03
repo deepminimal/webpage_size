@@ -36,10 +36,10 @@ for entry in proxy.har['log']['entries']:
   mimeType.append(entry['response']['content']['mimeType'])
   bodySize.append(int(entry['response']['bodySize']))
 
-json_data = defaultdict(dict)
+example = defaultdict(dict)
 
 for type in mimeType:
-  json_data[str(type)]
+  example[str(type)]
   
 
 for entry in proxy.har['log']['entries']:
@@ -48,8 +48,8 @@ for entry in proxy.har['log']['entries']:
     if (mimeType[i] == entry['response']['content']['mimeType']):
       keys["bodySize"].append(entry['response']['bodySize'])
       keys["URL"].append(entry['request']['url'])
-json_data = keys 
-print(json_data)
+example = keys 
+print(json.dumps(example))
 
        
 print("bodySize: ", str(sum(bodySize)))
