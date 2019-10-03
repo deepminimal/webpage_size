@@ -3,6 +3,7 @@ from selenium import webdriver
 import os
 import json
 import urlparse
+import re
 
 server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy")
 server.start()
