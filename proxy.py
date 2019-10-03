@@ -27,14 +27,13 @@ result = proxy.har
 #json.dumps(proxy.har, ensure_ascii=True)
 end = 0
 for entry in result:
-        print(result[entry])
-        if "bodySize" in str(entry):
-            r = re.search(r'bodySize\":(.*?),', str(entry))
+        if "bodySize" in str(result[entry]):
+            r = re.search(r'bodySize\":(.*?),', str(result[entry]))
             total_bytes.append(int(r.group(1)))
 print("bodySize: ", str(sum(total_bytes)))
 
 with open('/usr/share/zabbix/result.json', 'w') as outfile:
-  outfile.write(result)
+  outfile.write(json.dumps(proxy.har, ensure_ascii=True))
 
 driver.save_screenshot("/usr/share/zabbix/screenshot.png")
 proxy.stop()    
