@@ -29,15 +29,18 @@ driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
 result = json.dumps(proxy.har, ensure_ascii=True, indent=1)
 b = []
 for entry in proxy.har['log']['entries']:
-  b.append(entry['response']['content']['mimeType'])
+  mimeType.append(entry['response']['content']['mimeType'])
+  bodySize.append(int(entry['response']['bodySize']))
 print(list(set(b)))
-
-        
-r = re.findall(r'bodySize\":(.*?),', str(result))
-var =0
-for num in r:
-  var = var + int(num)
-print("bodySize: ", str(var))
+d = {}
+for entry in proxy.har['log']['entries']:
+  for i in range(1, len(mimeType)):
+    if (mimeType[i] == entry['response']['content']['mimeType']):
+      d.append(entry['request']['url'])
+  
+print(d)
+       
+print("bodySize: ", str(sum(bodySize)))
 
 #r = re.findall(r'url\":(.*?),', str(result))
 
