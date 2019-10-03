@@ -33,7 +33,7 @@ for num in r:
   var = var + int(num)
 print("bodySize: ", str(var))
 
-r = re.findall(r'bodySize\":(.*?),', str(result))
+r = re.findall(r'headersSize\":(.*?),', str(result))
 var1 =0
 for num in r:
   var1 = var1 + int(num)
