@@ -8,7 +8,7 @@ import re
 os.system("pkill -9 -f browsermob-proxy")
 os.system("pkill -9 -f chro")
 dict = {'port': 3343}
-server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy"), options=dict)
+server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy", options=dict)
 server.start()
 proxy = server.create_proxy()
 chromedriver = "./chromedriver"
