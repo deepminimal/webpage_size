@@ -43,7 +43,7 @@ for entry in result:
 print("bodySize: ", str(sum(total_bytes)))
 
 with open('/usr/share/zabbix/result.json', 'w') as outfile:
-  outfile.write(json.dumps(proxy.har, ensure_ascii=True))
+  outfile.write(json.dumps(proxy.har, ensure_ascii=True, indent=4))
 
 driver.save_screenshot("/usr/share/zabbix/screenshot.png")
 proxy.stop()    
