@@ -29,7 +29,7 @@ driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
 result = json.dumps(proxy.har, ensure_ascii=True, indent=2)
 dic = proxy.har
 print(type(dic))
-print(dic.has_key('bodySize'))
+print(dic.has_key('log'))
 r = re.findall(r'bodySize\":(.*?),', str(result))
 var =0
 for num in r:
