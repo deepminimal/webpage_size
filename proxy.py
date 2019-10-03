@@ -27,19 +27,13 @@ WebDriverWait(driver, 60).until(lambda driver: driver.execute_script("return doc
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
 result = json.dumps(proxy.har, ensure_ascii=True, indent=2)
+print(type(result))
 r = re.findall(r'bodySize\":(.*?),', str(result))
 var =0
 for num in r:
   var = var + int(num)
 print("bodySize: ", str(var))
 
-r = re.findall(r'headersSize\":(.*?),', str(result))
-print(type(r))
-var1 =0
-for num in r:
-  var1 = var1 + int(num)
-print("headersSize: ", str(var))
-print("Without headersSize: ", str(var - var1))
 #r = re.findall(r'url\":(.*?),', str(result))
 
 
