@@ -31,6 +31,8 @@ end = 0
 print(type(result))
 
 for entry in result:
+        if (end <2):
+          print(entry)
         if "bodySize" in str(entry):
             r = re.search(r'bodySize\":(.*?),', str(entry))
             try:
