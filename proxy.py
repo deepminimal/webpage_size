@@ -41,7 +41,6 @@ example = defaultdict(dict)
 
 for type in mimeType:
   example[str(type)]
-print(example)  
 
 for entry in proxy.har['log']['entries']:
   keys = defaultdict(dict)
@@ -60,7 +59,7 @@ print("bodySize: ", str(sum(bodySize)))
 
 
 with open('/usr/share/zabbix/result.json', 'w') as outfile:
-  outfile.write(json.dumps(proxy.har, ensure_ascii=True, indent=2))
+  outfile.write(json.dumps(example))
 driver.find_element_by_tag_name('body').screenshot('/usr/share/zabbix/screenshot.png')
 server.stop()    
 driver.quit()
