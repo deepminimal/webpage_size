@@ -31,6 +31,7 @@ WebDriverWait(driver, 60).until(lambda driver: driver.execute_script("return doc
 S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
 driver.set_window_size(S('Width'),S('Height')) # May need manual adjustment
 result = json.dumps(proxy.har, ensure_ascii=True, indent=1)
+har = proxy.har['log']['entries']
 mimeType = []
 bodySize = []
 for entry in proxy.har['log']['entries']:
@@ -43,17 +44,16 @@ example = defaultdict(dict)
 #  example[str(type)]
   
 keys = defaultdict(dict)
-for i in range(1, len(mimeType)):
-  for entries in range(1, len(proxy.har['log']['entries'])):
-    if (mimeType[i] == proxy.har['log']['entries'][entries]['response']['content']['mimeType']):
-      keys[mimeType[i]][entries] = {'bodySize': int(proxy.har['log']['entries'][entries]['response']['bodySize']),'URL': str(proxy.har['log']['entries'][entries]['request']['url'])}
+#for i in range(1, len(mimeType)):
+#  for entries in range(1, len(har)):
+#    if (mimeType[i] == har[entries]['response']['content']['mimeType']):
+#      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
         
 
-print(len(proxy.har['log']['entries']))
+
 example['JSON'] = keys 
 
-print(json.dumps(example))
-print("example")
+print(json.dumps(har))
        
 print("bodySize: ", str(sum(bodySize)))
 
