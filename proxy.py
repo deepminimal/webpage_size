@@ -44,14 +44,14 @@ example = defaultdict(dict)
 #  example[str(type)]
   
 keys = defaultdict(dict)
-#for i in range(1, len(mimeType)):
-#  for entries in range(1, len(har)):
-#    if (mimeType[i] == har[entries]['response']['content']['mimeType']):
-#      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
+for i in range(1, len(mimeType)):
+  for entries in range(1, len(har)):
+    if (mimeType[i] == har[entries]['response']['content']['mimeType']):
+      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
         
 
 
-example['JSON'] = keys 
+example['result'] = keys 
 
 
        
@@ -61,11 +61,11 @@ print("bodySize: ", str(sum(bodySize)))
 
 
 
-with open('/usr/share/zabbix/result.json', 'w') as outfile:
-  outfile.write(json.dumps(har, ensure_ascii=True, indent=1))
+with open('/usr/share/zabbix/example.json', 'w') as outfile:
+  outfile.write(example)
   
-with open('/usr/share/zabbix/result1.json', 'w') as outfile:
-  outfile.write(json.dumps(proxy.har, ensure_ascii=True, indent=1))  
+with open('/usr/share/zabbix/result.json', 'w') as outfile:
+  outfile.write(json.dumps(example, ensure_ascii=True, indent=1))  
 driver.find_element_by_tag_name('body').screenshot('/usr/share/zabbix/screenshot.png')
 server.stop()    
 driver.quit()
