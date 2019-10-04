@@ -62,7 +62,7 @@ print("bodySize: ", str(sum(bodySize)))
 
 
 with open('/usr/share/zabbix/example.json', 'w') as outfile:
-  outfile.write(example)
+  outfile.write(json.dumps(har, ensure_ascii=True, indent=1))
   
 with open('/usr/share/zabbix/result.json', 'w') as outfile:
   outfile.write(json.dumps(example, ensure_ascii=True, indent=1))  
