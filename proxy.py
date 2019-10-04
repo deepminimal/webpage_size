@@ -53,7 +53,7 @@ keys = defaultdict(dict)
 
 example['JSON'] = keys 
 
-print(json.dumps(har))
+
        
 print("bodySize: ", str(sum(bodySize)))
 
@@ -62,7 +62,7 @@ print("bodySize: ", str(sum(bodySize)))
 
 
 with open('/usr/share/zabbix/result.json', 'w') as outfile:
-  outfile.write(json.dumps(example))
+  outfile.write(json.dumps(har, ensure_ascii=True, indent=1))
   
 with open('/usr/share/zabbix/result1.json', 'w') as outfile:
   outfile.write(json.dumps(proxy.har, ensure_ascii=True, indent=1))  
