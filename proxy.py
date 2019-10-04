@@ -9,7 +9,8 @@ import json
 from collections import defaultdict
 
 os.system("pkill -9 -f browsermob-proxy")
-os.system("pkill -9 -f chro")
+os.system("pkill -9 -f chrom")
+
 proxy_optoins = {'port': 3343}
 server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy", options=proxy_optoins)
 server.start()
@@ -43,7 +44,7 @@ for type in mimeType:
 print(example)  
 
 for entry in proxy.har['log']['entries']:
-  keys = defaultdict(list)
+  keys = []
   for i in range(1, len(mimeType)):
     if (mimeType[i] == entry['response']['content']['mimeType']):
       keys.append({'bodySize': int(entry['response']['bodySize']),'URL': str(entry['request']['url'])})
@@ -64,4 +65,4 @@ driver.find_element_by_tag_name('body').screenshot('/usr/share/zabbix/screenshot
 server.stop()    
 driver.quit()
 os.system("pkill -9 -f browsermob-proxy")
-os.system("pkill -9 -f chro")
+os.system("pkill -9 -f chrom")
