@@ -41,9 +41,11 @@ example = defaultdict(dict)
 
 for type in mimeType:
   example[str(type)]
+  
+keys = defaultdict(dict)
 
 for entry in proxy.har['log']['entries']:
-  keys = defaultdict(dict)
+  
   for i in range(1, len(mimeType)):
     if (mimeType[i] == entry['response']['content']['mimeType']):
       keys[mimeType[i]][i] = {'bodySize': int(entry['response']['bodySize']),'URL': str(entry['request']['url'])}
