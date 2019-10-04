@@ -48,9 +48,9 @@ for entry in proxy.har['log']['entries']:
     if (mimeType[i] == entry['response']['content']['mimeType']):
       keys[mimeType[i]][i] = {'bodySize': int(entry['response']['bodySize']),'URL': str(entry['request']['url'])}
 example = keys 
-print(keys)
-print(json.dumps(example))
 
+print(json.dumps(example))
+print("example")
        
 print("bodySize: ", str(sum(bodySize)))
 
