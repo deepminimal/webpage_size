@@ -8,8 +8,8 @@ import re
 import json
 from collections import defaultdict
 
-os.system("pkill -9 -f browsermob-proxy")
-os.system("pkill -9 -f chrom")
+os.popen("pkill -9 -f browsermob-proxy")
+os.popen("pkill -9 -f chrom")
 
 proxy_optoins = {'port': 3343}
 server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy", options=proxy_optoins)
@@ -69,5 +69,5 @@ with open('/usr/share/zabbix/result.json', 'w') as outfile:
 driver.find_element_by_tag_name('body').screenshot('/usr/share/zabbix/screenshot.png')
 server.stop()    
 driver.quit()
-os.system("pkill -9 -f browsermob-proxy")
-os.system("pkill -9 -f chrom")
+os.popen("pkill -9 -f browsermob-proxy")
+os.popen("pkill -9 -f chrom")
