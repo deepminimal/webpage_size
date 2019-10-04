@@ -12,7 +12,7 @@ os.popen("pkill -9 -f browsermob-proxy")
 os.popen("pkill -9 -f chrom")
 
 proxy_optoins = {'port': 3343}
-server = Server("/home/work/webpage_size/browsermob-proxy-2.1.4/bin/browsermob-proxy", options=proxy_optoins)
+server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options=proxy_optoins)
 server.start()
 proxy = server.create_proxy()
 chromedriver = "./chromedriver"
