@@ -65,7 +65,7 @@ with open('/usr/share/zabbix/result.json', 'w') as outfile:
   outfile.write(json.dumps(example))
   
 with open('/usr/share/zabbix/result1.json', 'w') as outfile:
-  outfile.write(json.dumps(result))  
+  outfile.write(json.dumps(proxy.har, ensure_ascii=True, indent=1))  
 driver.find_element_by_tag_name('body').screenshot('/usr/share/zabbix/screenshot.png')
 server.stop()    
 driver.quit()
