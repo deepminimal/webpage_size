@@ -48,8 +48,8 @@ keys = defaultdict(dict)
 #  if (mimeType[i] == entry['response']['content']['mimeType']):
 #    keys[mimeType[i]][i] = {'bodySize': int(entry['response']['bodySize']),'URL': str(entry['request']['url'])}
 
-print(len(proxy.har['log']['entries'])
-example['JSON'] = keys 
+print(len(proxy.har['log']['entries']))
+#example['JSON'] = keys 
 
 print(json.dumps(example))
 print("example")
