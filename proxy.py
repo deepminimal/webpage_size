@@ -59,7 +59,8 @@ print("bodySize: ", str(sum(bodySize)))
 
 
 with open('/usr/share/zabbix/result.json', 'w') as outfile:
-  outfile.write(example)
+  outfile.write(json.dumps(example))
+  
 driver.find_element_by_tag_name('body').screenshot('/usr/share/zabbix/screenshot.png')
 server.stop()    
 driver.quit()
