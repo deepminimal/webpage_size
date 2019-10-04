@@ -43,13 +43,12 @@ for type in mimeType:
   example[str(type)]
   
 keys = defaultdict(dict)
+#for i in range(1, len(mimeType)):
+#  for entry in range(1, len(proxy.har['log']['entries'])):
+#  if (mimeType[i] == entry['response']['content']['mimeType']):
+#    keys[mimeType[i]][i] = {'bodySize': int(entry['response']['bodySize']),'URL': str(entry['request']['url'])}
 
-for entry in proxy.har['log']['entries']:
-  for i in range(1, len(mimeType)):
-    if (mimeType[i] == entry['response']['content']['mimeType']):
-      keys[mimeType[i]][i] = {'bodySize': int(entry['response']['bodySize']),'URL': str(entry['request']['url'])}
-
-
+print(len(proxy.har['log']['entries'])
 example['JSON'] = keys 
 
 print(json.dumps(example))
