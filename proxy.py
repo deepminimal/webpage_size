@@ -54,19 +54,18 @@ class GET_PAGE_SIZE(Resource):
           if (mimeType[i] == har[entries]['response']['content']['mimeType']):
             keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       example['result'] = keys 
-      print("bodySize: ", str(sum(bodySize)))
       server.stop()    
       driver.quit()
       os.popen("pkill -9 -f browsermob-proxy")
       os.popen("pkill -9 -f chrom")
-      return str(sum(bodySize))
+      return {'bodySize':str(sum(bodySize))}
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
-    #app.logger.disabled = True
-    #log = logging.getLogger('werkzeug')
-    #log.disabled = True
+    app.logger.disabled = True
+    log = logging.getLogger('werkzeug')
+    log.disabled = True
     api.add_resource(GET_PAGE_SIZE, "/webpage_size/<path:URL>")
-    app.run(host='0.0.0.0',port=5001, debug=True)
+    app.run(host='0.0.0.0',port=5001, debug=False)
 except Exception as exc:
   print "ERROR: %s" % str(exc)
