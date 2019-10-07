@@ -19,6 +19,7 @@ RUN export JAVA_HOME
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 FROM python:2.7
+WORKDIR /app
 COPY . /app
 
 
