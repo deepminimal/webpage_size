@@ -13,7 +13,7 @@ RUN apt-get update && \
     apt-get clean && \
     update-ca-certificates -f;
     
-RUN apt-get install -y google-chrome-stable    
+RUN apt-get install -y google-chrome-stable --allow-unauthenticated 
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 RUN export JAVA_HOME    
