@@ -5,6 +5,7 @@ import os
 import json
 import urlparse
 import json
+import time
 from collections import defaultdict
 from flask import Flask, jsonify
 from flask_restful import Api, Resource, reqparse
@@ -61,9 +62,11 @@ class GET_PAGE_SIZE(Resource):
           if (mimeType[i] == har[entries]['response']['content']['mimeType']):
             keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       example['result'] = keys 
-      server.stop()  
+      #server.stop()  
       proxy.stop()
+      driver.stop_client()
       driver.quit()
+      time.sleep(3000)
       #os.popen("pkill -9 -f browsermob-proxy")
       #os.popen("pkill -9 -f chrom")
       return {'bodySize':str(sum(bodySize))}
