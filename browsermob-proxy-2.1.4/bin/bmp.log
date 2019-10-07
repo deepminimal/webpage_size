@@ -1,0 +1,16 @@
+[INFO  2019-10-03T13:29:33,077 net.lightbody.bmp.proxy.Main] (main) Starting BrowserMob Proxy version 2.1.4 
+[INFO  2019-10-03T13:29:33,352 org.eclipse.jetty.util.log] (main) jetty-7.x.y-SNAPSHOT 
+[INFO  2019-10-03T13:29:33,547 org.eclipse.jetty.util.log] (main) started o.e.j.s.ServletContextHandler{/,null} 
+[INFO  2019-10-03T13:29:34,095 org.eclipse.jetty.util.log] (main) Started SelectChannelConnector@0.0.0.0:8080 
+[INFO  2019-10-03T13:29:53,893 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp1548010882-20) Starting proxy at address: 0.0.0.0/0.0.0.0:8081 
+[INFO  2019-10-03T13:29:54,131 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp1548010882-20) Proxy listening with TCP transport 
+[INFO  2019-10-03T13:29:54,780 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp1548010882-20) Proxy started at address: /0:0:0:0:0:0:0:0:8081 
+[INFO  2019-10-03T13:29:57,736 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp1548010882-15) Starting proxy at address: 0.0.0.0/0.0.0.0:8082 
+[INFO  2019-10-03T13:29:57,764 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp1548010882-15) Proxy listening with TCP transport 
+[INFO  2019-10-03T13:29:57,825 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp1548010882-15) Proxy started at address: /0:0:0:0:0:0:0:0:8082 
+[INFO  2019-10-03T13:29:59,990 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp1548010882-17) Starting proxy at address: 0.0.0.0/0.0.0.0:8083 
+[INFO  2019-10-03T13:29:59,995 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp1548010882-17) Proxy listening with TCP transport 
+[INFO  2019-10-03T13:30:00,010 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp1548010882-17) Proxy started at address: /0:0:0:0:0:0:0:0:8083 
+[INFO  2019-10-03T13:30:01,379 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp1548010882-15) Starting proxy at address: 0.0.0.0/0.0.0.0:8084 
+[INFO  2019-10-03T13:30:01,382 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp1548010882-15) Proxy listening with TCP transport 
+[INFO  2019-10-03T13:30:01,418 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp1548010882-15) Proxy started at address: /0:0:0:0:0:0:0:0:8084 
