@@ -4,7 +4,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 import os
 import json
 import urlparse
-import re
 import json
 from collections import defaultdict
 
