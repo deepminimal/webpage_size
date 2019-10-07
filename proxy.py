@@ -10,9 +10,10 @@ from flask import Flask, jsonify
 from flask_restful import Api, Resource, reqparse
 import logging
 try:
-    from io import BytesIO
+  from io import BytesIO
 except ImportError:
-from StringIO import StringIO as BytesIO
+  from StringIO import StringIO as BytesIO
+
 app = Flask(__name__)
 api = Api(app)
 class GET_PAGE_SIZE(Resource):
