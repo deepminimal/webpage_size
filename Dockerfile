@@ -8,12 +8,14 @@ RUN \
   apt-get install -y oracle-java8-installer && \
   rm -rf /var/lib/apt/lists/* && \
 rm -rf /var/cache/oracle-jdk8-installer
+
+WORKDIR /app
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 FROM python:2.7
 COPY . /app
 
-WORKDIR /app
+
 RUN pip install -r requirements.txt
 EXPOSE 5001
 CMD python ./proxy.py
