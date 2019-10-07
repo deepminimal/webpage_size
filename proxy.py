@@ -24,11 +24,6 @@ api = Api(app)
 class GET_PAGE_SIZE(Resource):
   def get(self,URL):
     try:
-      #os.popen("pkill -9 -f browsermob-proxy")
-      #os.popen("pkill -9 -f chrom")
-      #proxy_optoins = {'port': 3343}
-      #server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options=proxy_optoins)
-      #server.start()
       proxy = server.create_proxy()
       chromedriver = "./chromedriver"
       os.environ["webdriver.chrome.driver"] = chromedriver
@@ -44,7 +39,7 @@ class GET_PAGE_SIZE(Resource):
       try:
         driver.get(URL)
       except Exception as err:
-        return (str(err))
+        print("ERROR: %s" % str(err))
       WebDriverWait(driver, 30).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
       S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
       driver.set_window_size(S('Width'),S('Height'))
@@ -62,20 +57,15 @@ class GET_PAGE_SIZE(Resource):
           if (mimeType[i] == har[entries]['response']['content']['mimeType']):
             keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       example['result'] = keys 
-      #server.stop()  
       driver.quit()
-      
-      #os.popen("pkill -9 -f browsermob-proxy")
-      #os.popen("pkill -9 -f chrom")
-      return {'bodySize':str(sum(bodySize))}
-      time.sleep(5)
+      #return {'bodySize':str(sum(bodySize))}
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
-    #app.logger.disabled = True
-    #log = logging.getLogger('werkzeug')
-    #log.disabled = True
+    app.logger.disabled = True
+    log = logging.getLogger('werkzeug')
+    log.disabled = True
     api.add_resource(GET_PAGE_SIZE, "/webpage_size/<path:URL>")
     app.run(host='0.0.0.0',port=5001, debug=True)
 except Exception as exc:
-  print "ERROR: %s" % str(exc)
+  print ("ERROR: %s" % str(exc))
