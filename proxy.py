@@ -64,10 +64,11 @@ class GET_PAGE_SIZE(Resource):
       example['result'] = keys 
       #server.stop()  
       driver.quit()
-      time.sleep(5)
+      
       #os.popen("pkill -9 -f browsermob-proxy")
       #os.popen("pkill -9 -f chrom")
       return {'bodySize':str(sum(bodySize))}
+      time.sleep(5)
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
