@@ -60,7 +60,7 @@ class GET_PAGE_SIZE(Resource):
       os.popen("pkill -9 -f browsermob-proxy")
       os.popen("pkill -9 -f chrom")
       return str(sum(bodySize))
-     except as e:
+    except as e:
       print("ERROR: %s" % str(e))
 try:        
     app.logger.disabled = True
