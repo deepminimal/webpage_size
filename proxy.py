@@ -36,7 +36,10 @@ class GET_PAGE_SIZE(Resource):
       driver = webdriver.Chrome(chromedriver,chrome_options =chrome_options)
       driver.set_window_size(1920, 1080)
       proxy.new_har(options={'captureHeaders': True, 'captureContent':True, 'captureBinaryContent':True})
-      driver.get(URL)    
+      try:
+        driver.get(URL)
+      except Exception as err:
+        return (str(err))
       WebDriverWait(driver, 30).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
       S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
       driver.set_window_size(S('Width'),S('Height'))
@@ -66,6 +69,6 @@ try:
     #log = logging.getLogger('werkzeug')
     #log.disabled = True
     api.add_resource(GET_PAGE_SIZE, "/webpage_size/<path:URL>")
-    app.run(host='0.0.0.0',port=5001, debug=False)
+    app.run(host='0.0.0.0',port=5001, debug=True)
 except Exception as exc:
   print "ERROR: %s" % str(exc)
