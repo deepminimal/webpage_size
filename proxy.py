@@ -63,7 +63,7 @@ class GET_PAGE_SIZE(Resource):
             keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       example['result'] = keys 
       #server.stop()  
-      proxy.stop()
+      proxy.stop_client()
       driver.stop_client()
       driver.quit()
       time.sleep(3000)
