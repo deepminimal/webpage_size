@@ -1,9 +1,4 @@
 selenium==3.14.0
 browsermobproxy 
-os
-json
-urlparse
-collections
 flask
 flask_restful
-logging
