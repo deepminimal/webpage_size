@@ -12,17 +12,11 @@ RUN apt-get update && \
     apt-get clean && \
     update-ca-certificates -f;
     
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+RUN export JAVA_HOME    
 RUN pip install --upgrade pip
-# Setup JAVA_HOME -- useful for docker commandline
-WORKDIR /app
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
-RUN export JAVA_HOME
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
-
 WORKDIR /app
 COPY . /app
-
-
 RUN pip install -r requirements.txt
 EXPOSE 5001
 CMD python ./proxy.py
