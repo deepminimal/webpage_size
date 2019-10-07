@@ -13,17 +13,21 @@ try:
   from io import BytesIO
 except ImportError:
   from StringIO import StringIO as BytesIO
+  
+proxy_optoins = {'port': 3343}
+server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options=proxy_optoins)
+server.start()
 
 app = Flask(__name__)
 api = Api(app)
 class GET_PAGE_SIZE(Resource):
   def get(self,URL):
     try:
-      os.popen("pkill -9 -f browsermob-proxy")
-      os.popen("pkill -9 -f chrom")
-      proxy_optoins = {'port': 3343}
-      server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options=proxy_optoins)
-      server.start()
+      #os.popen("pkill -9 -f browsermob-proxy")
+      #os.popen("pkill -9 -f chrom")
+      #proxy_optoins = {'port': 3343}
+      #server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options=proxy_optoins)
+      #server.start()
       proxy = server.create_proxy()
       chromedriver = "./chromedriver"
       os.environ["webdriver.chrome.driver"] = chromedriver
@@ -57,10 +61,11 @@ class GET_PAGE_SIZE(Resource):
           if (mimeType[i] == har[entries]['response']['content']['mimeType']):
             keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       example['result'] = keys 
-      server.stop()    
+      server.stop()  
+      proxy.stop()
       driver.quit()
-      os.popen("pkill -9 -f browsermob-proxy")
-      os.popen("pkill -9 -f chrom")
+      #os.popen("pkill -9 -f browsermob-proxy")
+      #os.popen("pkill -9 -f chrom")
       return {'bodySize':str(sum(bodySize))}
     except Exception as e:
       print("ERROR: %s" % str(e))
