@@ -69,4 +69,4 @@ try:
     api.add_resource(GET_PAGE_SIZE, "/webpage_size/<path:URL>")
     app.run(host='0.0.0.0',debug=False)
 except Exception as exc:
-print "ERROR: %s" % str(exc)
+  print "ERROR: %s" % str(exc)
