@@ -1,4 +1,4 @@
 selenium==3.14.0
-browsermobproxy 
+browsermob-proxy 
 flask
 flask_restful
