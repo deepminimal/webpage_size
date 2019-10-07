@@ -8,7 +8,7 @@ RUN apt-get update && \
 
 # Fix certificate issues
 RUN apt-get update && \
-    echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google.list && \
+    echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google.list && \
     apt-get install ca-certificates-java && \
     apt-get clean && \
     update-ca-certificates -f;
