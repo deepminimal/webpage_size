@@ -37,7 +37,7 @@ class GET_PAGE_SIZE(Resource):
       driver.set_window_size(1920, 1080)
       proxy.new_har(options={'captureHeaders': True, 'captureContent':True, 'captureBinaryContent':True})
       driver.get(URL)    
-      WebDriverWait(driver, 60).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
+      WebDriverWait(driver, 30).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
       S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
       driver.set_window_size(S('Width'),S('Height'))
       result = json.dumps(proxy.har, ensure_ascii=True, indent=1)
