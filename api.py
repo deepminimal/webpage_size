@@ -10,6 +10,7 @@ from collections import defaultdict
 from flask import Flask, jsonify
 from flask_restful import Api, Resource, reqparse
 import logging
+import datetime
 try:
   from io import BytesIO
 except ImportError:
@@ -62,7 +63,10 @@ class GET_PAGE_SIZE(Resource):
       #      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       #example['result'] = keys 
       driver.quit()
-      return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'LastStartDownloadTime':str(proxy.har['log']['entries'][counter-1]['startedDateTime']), 'startDownloadTime':str(proxy.har['log']['entries'][0]['startedDateTime'])}
+      startDownloadTime = datetime.datetime.strptime(str(proxy.har['log']['entries'][0]['startedDateTime']), "%Y-%m-%dT%H:%M:%S.%fZ")
+      LastStartDownloadTime = datetime.datetime.strptime(str(proxy.har['log']['entries'][counter-1]['startedDateTime']), "%Y-%m-%dT%H:%M:%S.%fZ")
+      
+      return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'LastStartDownloadTime': LastStartDownloadTime, 'startDownloadTime':startDownloadTime, 'total_download_time': str((LastStartDownloadTime - startDownloadTime).total_seconds()))}
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
