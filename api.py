@@ -59,6 +59,7 @@ class GET_PAGE_SIZE(Resource):
       #      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       #example['result'] = keys 
       driver.quit()
+      print(type(proxy.har['log']['entries']))
       print("Last entry:" , str(list(proxy.har['log']['entries'].keys())[-1]))
       last_key = list(proxy.har['log']['entries'].keys())[-1]
       return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'startDownloadTime':str(proxy.har['log']['entries'][0]['startedDateTime']), 'lastDownloadTime':str(proxy.har['log']['entries'][last_key]['startedDateTime'])}
