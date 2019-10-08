@@ -63,8 +63,8 @@ class GET_PAGE_SIZE(Resource):
       #      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       #example['result'] = keys 
       driver.quit()
-      starttime = json.dumps(proxy.har['log']['entries'][0]['startedDateTime'])
-      lasttime = json.dumps(proxy.har['log']['entries'][counter-1]['startedDateTime'])
+      starttime = str(json.dumps(proxy.har['log']['entries'][0]['startedDateTime']))
+      lasttime = str(json.dumps(proxy.har['log']['entries'][counter-1]['startedDateTime']))
       print(type(lasttime))
       print(lasttime)
       startDownloadTime = datetime.datetime.strptime(starttime, "%Y-%m-%dT%H:%M:%S.%fZ")
