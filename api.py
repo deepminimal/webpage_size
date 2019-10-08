@@ -63,17 +63,15 @@ class GET_PAGE_SIZE(Resource):
       #      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       #example['result'] = keys 
       driver.quit()
-      starttime = str(proxy.har['log']['entries'][0]['startedDateTime'])
-      lasttime = str(proxy.har['log']['entries'][counter-1]['startedDateTime'])
-      startDownloadTime = datetime.datetime.strptime(str(starttime), '%Y-%m-%dT%H:%M:%S.%fZ')
-      LastStartDownloadTime = datetime.datetime.strptime(str(lasttime), '%Y-%m-%dT%H:%M:%S.%fZ')
+      startDownloadTime = datetime.datetime.strptime(str(proxy.har['log']['entries'][0]['startedDateTime']), '%Y-%m-%dT%H:%M:%S.%fZ')
+      LastStartDownloadTime = datetime.datetime.strptime(str(proxy.har['log']['entries'][counter-1]['startedDateTime']), '%Y-%m-%dT%H:%M:%S.%fZ')
       return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'LastStartDownloadTime': str(LastStartDownloadTime), 'startDownloadTime': str(startDownloadTime), 'total_download_time': str((LastStartDownloadTime - startDownloadTime).total_seconds())}
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
-    #app.logger.disabled = True
-    #log = logging.getLogger('werkzeug')
-    #log.disabled = True
+    app.logger.disabled = True
+    log = logging.getLogger('werkzeug')
+    log.disabled = True
     api.add_resource(GET_PAGE_SIZE, "/webpage_size/<path:URL>")
     app.run(host='0.0.0.0',port=5001, debug=True)
 except Exception as exc:
