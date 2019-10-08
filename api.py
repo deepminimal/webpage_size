@@ -67,6 +67,8 @@ class GET_PAGE_SIZE(Resource):
       for entry in proxy.har['log']['entries']:
         counter_1 += 1
       driver.quit()
+      duration = time.time() - start_time
+      print(duration)
       return {'counter':str(counter), 'counter_1':str(counter_1), 'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'startDownloadTime':str(proxy.har['log']['entries'][0]['startedDateTime']), 'har':{0:proxy.har}}
     except Exception as e:
       print("ERROR: %s" % str(e))
