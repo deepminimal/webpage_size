@@ -65,8 +65,7 @@ class GET_PAGE_SIZE(Resource):
       driver.quit()
       startDownloadTime = datetime.datetime.strptime(str(proxy.har['log']['entries'][0]['startedDateTime']), "%Y-%m-%dT%H:%M:%S.%fZ")
       LastStartDownloadTime = datetime.datetime.strptime(str(proxy.har['log']['entries'][counter-1]['startedDateTime']), "%Y-%m-%dT%H:%M:%S.%fZ")
-      
-      return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'LastStartDownloadTime': LastStartDownloadTime, 'startDownloadTime':startDownloadTime, 'total_download_time': str((LastStartDownloadTime - startDownloadTime).total_seconds()))}
+      return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'LastStartDownloadTime': LastStartDownloadTime, 'startDownloadTime':startDownloadTime, 'total_download_time': str((LastStartDownloadTime - startDownloadTime).total_seconds())}
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
