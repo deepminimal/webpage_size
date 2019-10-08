@@ -39,7 +39,6 @@ class GET_PAGE_SIZE(Resource):
         proxy.new_har(str(URL),options={'captureHeaders': True, 'captureContent':True, 'captureBinaryContent':True})
         driver.get(URL)
         status_code = proxy.wait_for_traffic_to_stop(100, 30000)
-        print(status_code)
       except Exception as err:
         print("ERROR: %s" % str(err))
       #WebDriverWait(driver, 30).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
@@ -63,7 +62,7 @@ class GET_PAGE_SIZE(Resource):
       #      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       #example['result'] = keys 
       driver.quit()
-      return {'counter':str(counter), 'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'LastStartDownloadTime':str(proxy.har['log']['entries'][counter-1]['startedDateTime']),'LastTime':str(proxy.har['log']['entries'][counter-1]['time']), 'startDownloadTime':str(proxy.har['log']['entries'][0]['startedDateTime']),'har':{0:proxy.har}}
+      return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'LastStartDownloadTime':str(proxy.har['log']['entries'][counter-1]['startedDateTime']), 'startDownloadTime':str(proxy.har['log']['entries'][0]['startedDateTime'])}
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
