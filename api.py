@@ -46,11 +46,11 @@ class GET_PAGE_SIZE(Resource):
       #har = proxy.har['log']['entries']
       #mimeType = []
       bodySize = []
-      time = []
+      download_time = []
       for entry in proxy.har['log']['entries']:
         #mimeType.append(entry['response']['content']['mimeType'])
         bodySize.append(int(entry['response']['bodySize']))
-        time.append(int(entry['response']['time']))
+        download_time.append(int(entry['response']['time']))
       #example = defaultdict(dict)
       #keys = defaultdict(dict)
       #for i in range(1, len(mimeType)):
@@ -59,7 +59,7 @@ class GET_PAGE_SIZE(Resource):
       #      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       #example['result'] = keys 
       driver.quit()
-      return {'bodySize':str(sum(bodySize)), 'time':str(sum(time))}
+      return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time))}
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
