@@ -35,9 +35,12 @@ class GET_PAGE_SIZE(Resource):
       chrome_options.add_argument("--proxy-server={0}".format(url))
       driver = webdriver.Chrome(chromedriver,chrome_options =chrome_options)
       driver.set_window_size(1920, 1080)
-      proxy.new_har(options={'captureHeaders': True, 'captureContent':True, 'captureBinaryContent':True})
+      
       try:
+        start_time = time.time()
         driver.get(URL)
+        proxy.new_har(str(URL),options={'captureHeaders': True, 'captureContent':True, 'captureBinaryContent':True})
+        status_code = proxy.wait_for_traffic_to_stop(100, 50000)
       except Exception as err:
         print("ERROR: %s" % str(err))
       #WebDriverWait(driver, 30).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
