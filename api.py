@@ -67,9 +67,7 @@ class GET_PAGE_SIZE(Resource):
       lasttime = str(proxy.har['log']['entries'][counter-1]['startedDateTime'])
       startDownloadTime = datetime.datetime.strptime(str(starttime), '%Y-%m-%dT%H:%M:%S.%fZ')
       LastStartDownloadTime = datetime.datetime.strptime(str(lasttime), '%Y-%m-%dT%H:%M:%S.%fZ')
-      print(LastStartDownloadTime)
-      print(type(LastStartDownloadTime))
-      return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'LastStartDownloadTime': LastStartDownloadTime, 'startDownloadTime':startDownloadTime, 'total_download_time': str((LastStartDownloadTime - startDownloadTime).total_seconds())}
+      return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'LastStartDownloadTime': str(LastStartDownloadTime), 'startDownloadTime': str(startDownloadTime), 'total_download_time': str((LastStartDownloadTime - startDownloadTime).total_seconds())}
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
