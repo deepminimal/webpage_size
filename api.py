@@ -63,7 +63,7 @@ class GET_PAGE_SIZE(Resource):
       print(type(test_item))
       print(test_item)
       print("Last entry:" , str(list(test_item.keys())[-1]))
-      last_key = list(proxy.har['log']['entries'].keys())[-1]
+      last_key = list(proxy.har['log'][0]['entries'].keys())[-1]
       return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'startDownloadTime':str(proxy.har['log']['entries'][0]['startedDateTime']), 'lastDownloadTime':str(proxy.har['log']['entries'][last_key]['startedDateTime'])}
     except Exception as e:
       print("ERROR: %s" % str(e))
