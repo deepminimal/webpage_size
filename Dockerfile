@@ -15,9 +15,9 @@ RUN apt-get update && \
     
 RUN apt-get install -y google-chrome-stable --allow-unauthenticated 
 
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64" JAVA_OPTS="-Xmx2048m"
 RUN export JAVA_HOME && \
-    set JAVA_OPTS="-Xmx1024m"
+    export JAVA_OPTS
 RUN pip install --upgrade pip
 WORKDIR /app
 COPY . /app
