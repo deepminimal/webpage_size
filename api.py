@@ -59,7 +59,7 @@ class GET_PAGE_SIZE(Resource):
       #      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       #example['result'] = keys 
       driver.quit()
-      test_item = proxy.har['log']['entries']
+      test_item = list(proxy.har['log']['entries'].items())
       print(type(test_item))
       print(test_item)
       print("Last entry:" , str(list(test_item.keys())[-1]))
