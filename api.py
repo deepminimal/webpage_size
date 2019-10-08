@@ -21,30 +21,6 @@ server.start()
 
 app = Flask(__name__)
 api = Api(app)
-#-----------------WEBCHECK------------------
-class LIST_WEBPAGESIZE(Resource):
-    def get(self):
-       try:
-          buffer = BytesIO()
-          c = pycurl.Curl()
-          c.setopt(c.URL, "https://raw.githubusercontent.com/deepminimal/webpage_size/master/webpagesize_url_list")
-          c.setopt(c.WRITEDATA, buffer)
-          c.setopt(pycurl.ENCODING, 'gzip, deflate')
-          c.setopt(pycurl.CONNECTTIMEOUT, 30)
-          c.setopt(pycurl.TIMEOUT, 30)
-          c.setopt(c.FOLLOWLOCATION,10)
-          c.perform()
-          list = buffer.getvalue().splitlines()
-          if list == None:
-            return "ERROR: No data received"
-          data = {"data":[]}
-          for i in list:
-            str = i.split(",")
-            data["data"].append({"{#URL}":str[0], "{#TAG}":str[1]})  
-          return jsonify(data)       
-       except Exception as exc:
-          print "ERROR: %s" % str(exc)
-
 class GET_PAGE_SIZE(Resource):
   def get(self,URL):
     try:
@@ -94,7 +70,6 @@ try:
     log = logging.getLogger('werkzeug')
     log.disabled = True
     api.add_resource(GET_PAGE_SIZE, "/webpage_size/<path:URL>")
-    api.add_resource(LIST_WEBPAGESIZE, "/list/LIST_WEBPAGESIZE")
     app.run(host='0.0.0.0',port=5001, debug=False)
 except Exception as exc:
   print ("ERROR: %s" % str(exc))
