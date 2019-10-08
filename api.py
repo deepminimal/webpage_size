@@ -65,7 +65,7 @@ class GET_PAGE_SIZE(Resource):
       driver.quit()
       starttime = str(proxy.har['log']['entries'][0]['startedDateTime'])
       lasttime = str(proxy.har['log']['entries'][counter-1]['startedDateTime'])
-      startDownloadTime = datetime.datetime.strptime(str(starttime), '"%Y-%m-%dT%H:%M:%S.%fZ"')
+      startDownloadTime = datetime.datetime.strptime(str(starttime), '%Y-%m-%dT%H:%M:%S.%fZ')
       LastStartDownloadTime = datetime.datetime.strptime(str(lasttime), '%Y-%m-%dT%H:%M:%S.%fZ')
       print(LastStartDownloadTime)
       print(type(LastStartDownloadTime))
