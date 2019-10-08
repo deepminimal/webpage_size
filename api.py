@@ -50,7 +50,7 @@ class GET_PAGE_SIZE(Resource):
       for entry in proxy.har['log']['entries']:
         #mimeType.append(entry['response']['content']['mimeType'])
         bodySize.append(int(entry['response']['bodySize']))
-        download_time.append(int(entry['response']['time']))
+        download_time.append(int(entry['time']))
       #example = defaultdict(dict)
       #keys = defaultdict(dict)
       #for i in range(1, len(mimeType)):
