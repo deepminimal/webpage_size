@@ -43,22 +43,23 @@ class GET_PAGE_SIZE(Resource):
       WebDriverWait(driver, 30).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
       S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
       driver.set_window_size(S('Width'),S('Height'))
-      result = json.dumps(proxy.har, ensure_ascii=True, indent=1)
-      har = proxy.har['log']['entries']
-      mimeType = []
+      #har = proxy.har['log']['entries']
+      #mimeType = []
       bodySize = []
+      time = []
       for entry in proxy.har['log']['entries']:
-        mimeType.append(entry['response']['content']['mimeType'])
+        #mimeType.append(entry['response']['content']['mimeType'])
         bodySize.append(int(entry['response']['bodySize']))
-      example = defaultdict(dict)
-      keys = defaultdict(dict)
-      for i in range(1, len(mimeType)):
-        for entries in range(1, len(har)):
-          if (mimeType[i] == har[entries]['response']['content']['mimeType']):
-            keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
-      example['result'] = keys 
+        time.append(int(entry['response']['time']))
+      #example = defaultdict(dict)
+      #keys = defaultdict(dict)
+      #for i in range(1, len(mimeType)):
+      #  for entries in range(1, len(har)):
+      #    if (mimeType[i] == har[entries]['response']['content']['mimeType']):
+      #      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
+      #example['result'] = keys 
       driver.quit()
-      return {'bodySize':str(sum(bodySize))}
+      return {'bodySize':str(sum(bodySize)), 'time':str(sum(time))}
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
