@@ -35,12 +35,11 @@ class GET_PAGE_SIZE(Resource):
       chrome_options.add_argument("--proxy-server={0}".format(url))
       driver = webdriver.Chrome(chromedriver,chrome_options =chrome_options)
       driver.set_window_size(1920, 1080)
-      
       try:
-        start_time = time.time()
         proxy.new_har(str(URL),options={'captureHeaders': True, 'captureContent':True, 'captureBinaryContent':True})
         driver.get(URL)
-        status_code = proxy.wait_for_traffic_to_stop(100, 50000)
+        status_code = proxy.wait_for_traffic_to_stop(100, 60000)
+        print(status_code)
       except Exception as err:
         print("ERROR: %s" % str(err))
       #WebDriverWait(driver, 30).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
@@ -63,13 +62,8 @@ class GET_PAGE_SIZE(Resource):
       #    if (mimeType[i] == har[entries]['response']['content']['mimeType']):
       #      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       #example['result'] = keys 
-      counter_1 = 0
-      for entry in proxy.har['log']['entries']:
-        counter_1 += 1
       driver.quit()
-      duration = time.time() - start_time
-      print(duration)
-      return {'counter':str(counter), 'counter_1':str(counter_1), 'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'startDownloadTime':str(proxy.har['log']['entries'][0]['startedDateTime']), 'har':{0:proxy.har}}
+      return {'counter':str(counter), 'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'startDownloadTime':str(proxy.har['log']['entries'][0]['startedDateTime']), 'LastStartDownloadTime':str(proxy.har['log']['entries'][counter]['startedDateTime']),'LastTime':str(proxy.har['log']['entries'][counter]['time']), 'har':{0:proxy.har}}
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
