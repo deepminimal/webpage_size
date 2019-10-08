@@ -63,13 +63,16 @@ class GET_PAGE_SIZE(Resource):
       #      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       #example['result'] = keys 
       driver.quit()
-      starttime = json.dumps(proxy.har['log']['entries'][0]['startedDateTime'])
-      lasttime = json.dumps(proxy.har['log']['entries'][counter-1]['startedDateTime'])
+      starttime = str(proxy.har['log']['entries'][0]['startedDateTime'])
+      lasttime = str(proxy.har['log']['entries'][counter-1]['startedDateTime'])
+      print(json.dumps(starttime))
       print(type(lasttime))
       print(lasttime)
-      startDownloadTime = datetime.datetime.strptime(starttime, '"%Y-%m-%dT%H:%M:%S.%fZ"')
-      LastStartDownloadTime = datetime.datetime.strptime(lasttime, '"%Y-%m-%dT%H:%M:%S.%fZ"')
-      return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'LastStartDownloadTime': LastStartDownloadTime, 'startDownloadTime':startDownloadTime, 'total_download_time': str((LastStartDownloadTime - startDownloadTime).total_seconds())}
+      #startDownloadTime = datetime.datetime.strptime(starttime, '"%Y-%m-%dT%H:%M:%S.%fZ"')
+      LastStartDownloadTime = datetime.datetime.strptime(str(lasttime), '%Y-%m-%dT%H:%M:%S.%fZ')
+      print(LastStartDownloadTime)
+      print(type(LastStartDownloadTime))
+      return {'bodySize':str(sum(bodySize))}#, 'time':str(sum(download_time)), 'LastStartDownloadTime': LastStartDownloadTime, 'startDownloadTime':startDownloadTime, 'total_download_time': str((LastStartDownloadTime - startDownloadTime).total_seconds())}
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
