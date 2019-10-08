@@ -61,7 +61,7 @@ class GET_PAGE_SIZE(Resource):
       #      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       #example['result'] = keys 
       driver.quit()
-      return {'count':str(count), 'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'startDownloadTime':str(proxy.har['log']['entries'][0]['startedDateTime']), 'lastDownloadTime':str(proxy.har['log']['entries'][counter]['startedDateTime']), 'lastTime':str(proxy.har['log']['entries'][counter]['time']), 'har':{0:proxy.har}}
+      return {'counter':str(counter), 'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'startDownloadTime':str(proxy.har['log']['entries'][0]['startedDateTime']), 'lastDownloadTime':str(proxy.har['log']['entries'][counter]['startedDateTime']), 'lastTime':str(proxy.har['log']['entries'][counter]['time']), 'har':{0:proxy.har}}
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
