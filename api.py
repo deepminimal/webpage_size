@@ -60,7 +60,7 @@ class GET_PAGE_SIZE(Resource):
       #    if (mimeType[i] == har[entries]['response']['content']['mimeType']):
       #      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       #example['result'] = keys 
-      counter_1
+      counter_1 = 0
       for entry in proxy.har['log']['entries']:
         counter_1 += 1
       driver.quit()
