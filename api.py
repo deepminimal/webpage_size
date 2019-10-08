@@ -38,7 +38,7 @@ class GET_PAGE_SIZE(Resource):
       try:
         proxy.new_har(str(URL),options={'captureHeaders': True, 'captureContent':True, 'captureBinaryContent':True})
         driver.get(URL)
-        status_code = proxy.wait_for_traffic_to_stop(100, 40000)
+        status_code = proxy.wait_for_traffic_to_stop(100, 20000)
       except Exception as err:
         print("ERROR: %s" % str(err))
       #WebDriverWait(driver, 30).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
