@@ -25,6 +25,7 @@ api = Api(app)
 class GET_PAGE_SIZE(Resource):
   def get(self,URL):
     try:
+      return "OK"
       print("start get fed")
       proxy = server.create_proxy()
       chromedriver = "./chromedriver"
