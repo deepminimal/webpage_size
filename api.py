@@ -88,4 +88,4 @@ try:
     app.run(host='0.0.0.0',port=5001, debug=True)
 except Exception as exc:
   error3 = "ERROR3: " + str(exc)
-  return "PLOHO"
+  print "PLOHO"
