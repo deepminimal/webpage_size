@@ -23,7 +23,7 @@ RUN export JAVA_HOME && \
 RUN pip install --upgrade pip
 WORKDIR /app
 COPY . /app
-RUN bash ./browsermob-proxy-2.1.4/bin/browsermob-proxy --port=3344 --proxyPortRange='9000-9010' --ttl=600
+CMD bash ./browsermob-proxy-2.1.4/bin/browsermob-proxy --port=3344 --proxyPortRange='9000-9010' --ttl=600
 RUN pip install -r requirements.txt
 EXPOSE 5001
 CMD python ./api.py
