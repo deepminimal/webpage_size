@@ -71,7 +71,9 @@ class GET_PAGE_SIZE(Resource):
 try:        
     server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 5100})
     if (server.process == None):
+      print("In if")
       server.start()
+    print(server.process)
     #app.logger.disabled = True
     #log = logging.getLogger('werkzeug')
     #log.disabled = True
