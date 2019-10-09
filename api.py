@@ -19,7 +19,10 @@ except ImportError:
   
 server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 5100})
 server.start()
-
+with open('demofile3.txt', 'r+') as f:
+    f.seek(0, os.SEEK_END)
+    f.write("1")
+    
 app = Flask(__name__)
 api = Api(app)
 class GET_PAGE_SIZE(Resource):
