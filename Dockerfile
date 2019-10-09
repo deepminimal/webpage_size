@@ -1,11 +1,10 @@
 FROM ubuntu:16.04
 
 # Install OpenJDK-8
-RUN apt-get update && \
-    echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google.list && \
+RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google.list && \
+    apt-get update && \
     apt-get install -y openjdk-8-jdk && \
     apt-get install -y tzdata ant python-pip && \
-    
     apt-get clean;
 
 # Fix certificate issues
