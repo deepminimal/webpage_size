@@ -17,7 +17,7 @@ except ImportError:
   from StringIO import StringIO as BytesIO
 
   
-server = Server("/api/browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 8999})
+server = Server("/app/browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 8999})
 
 app = Flask(__name__)
 api = Api(app)
