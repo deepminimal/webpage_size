@@ -16,9 +16,6 @@ try:
 except ImportError:
   from StringIO import StringIO as BytesIO
 
-  
-
-
 app = Flask(__name__)
 api = Api(app)
 class GET_PAGE_SIZE(Resource):
@@ -69,11 +66,10 @@ class GET_PAGE_SIZE(Resource):
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
+    os.popen("pkill -9 java")
+    os.popen("pkill -9 brows")
     server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 5100})
-    if (server.process == None):
-      print("In if")
-      server.start()
-    print(server.process)
+    server.start()
     #app.logger.disabled = True
     #log = logging.getLogger('werkzeug')
     #log.disabled = True
