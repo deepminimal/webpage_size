@@ -14,9 +14,8 @@ RUN apt-get update && \
     update-ca-certificates -f;
     
 RUN apt-get install -y google-chrome-stable --allow-unauthenticated 
-RUN echo "Europe/Moscow" > /etc/timezone \
-    dpkg-reconfigure -f noninteractive tzdata
-
+ENV TZ Europe/Moscow
+RUN dpkg-reconfigure -f noninteractive tzdata
 ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64" JAVA_OPTS="-Xmx512m -Xms512m -XX:+AlwaysPreTouch -XX:CMSInitiatingOccupancyFraction=15 -XX:ParallelGCThreads=4 -XX:ConcGCThreads=4 -XX:NewRatio=2 -XX:+UseConcMarkSweepGC"
 RUN export JAVA_HOME && \
     export JAVA_OPTS
