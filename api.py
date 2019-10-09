@@ -18,7 +18,7 @@ except ImportError:
 
   
 server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 5100})
-server.start()
+#server.start()
 
 app = Flask(__name__)
 api = Api(app)
