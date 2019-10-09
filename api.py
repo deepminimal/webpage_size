@@ -47,8 +47,8 @@ class GET_PAGE_SIZE(Resource):
         status_code = proxy.wait_for_traffic_to_stop(100, 20000)
         
       except Exception as err:
-        error = "ERROR1: " + str(err)
-        return error
+        error1 = "ERROR1: " + str(err)
+        return str(error1)
       #WebDriverWait(driver, 30).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
       #S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
       #driver.set_window_size(S('Width'),S('Height'))
@@ -77,7 +77,7 @@ class GET_PAGE_SIZE(Resource):
       print("end")
       return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'LastStartDownloadTime': str(LastStartDownloadTime), 'startDownloadTime': str(startDownloadTime), 'total_download_time': str((LastStartDownloadTime - startDownloadTime).total_seconds())}
     except Exception as e:
-      error = "ERROR2: " + str(err)
+      error2 = "ERROR2: " + str(err)
       return error
 try:        
     #app.logger.disabled = True
@@ -87,5 +87,5 @@ try:
     api.add_resource(GET_PAGE_SIZE, "/webpage_size/<path:URL>")
     app.run(host='0.0.0.0',port=5001, debug=True)
 except Exception as exc:
-  error = "ERROR3: " + str(exc)
-  return error
+  error3 = "ERROR3: " + str(exc)
+  return "PLOHO"
