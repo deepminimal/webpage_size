@@ -15,12 +15,17 @@ try:
   from io import BytesIO
 except ImportError:
   from StringIO import StringIO as BytesIO
-
+  
+os.popen("pkill -9 java")
+os.popen("pkill -9 brows")
+server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 5100})
+server.start()
 app = Flask(__name__)
 api = Api(app)
 class GET_PAGE_SIZE(Resource):
   def get(self,URL):
     try:
+      print("start get fed")
       proxy = server.create_proxy()
       chromedriver = "./chromedriver"
       os.environ["webdriver.chrome.driver"] = chromedriver
@@ -74,13 +79,10 @@ class GET_PAGE_SIZE(Resource):
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
-    os.popen("pkill -9 java")
-    os.popen("pkill -9 brows")
-    server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 5100})
-    server.start()
     #app.logger.disabled = True
     #log = logging.getLogger('werkzeug')
     #log.disabled = True
+    print("start main")
     api.add_resource(GET_PAGE_SIZE, "/webpage_size/<path:URL>")
     app.run(host='0.0.0.0',port=5001, debug=True)
 except Exception as exc:
