@@ -25,6 +25,6 @@ RUN export JAVA_HOME && \
 RUN pip install --upgrade pip
 WORKDIR /app
 COPY . /app
-EXPOSE 5001
 RUN pip install -r requirements.txt
-CMD ./api.py
+EXPOSE 5001
+CMD python ./proxy.py
