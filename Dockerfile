@@ -15,7 +15,7 @@ RUN apt-get update && \
     
 RUN apt-get install -y google-chrome-stable --allow-unauthenticated 
 
-ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64" JAVA_OPTS="-Xmx2048m"
+ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64" JAVA_OPTS="-Xmx2g -Xms2g -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime -Xloggc:gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=32 -XX:GCLogFileSize=64m -XX:+AlwaysPreTouch -XX:CMSInitiatingOccupancyFraction=10 -XX:ParallelGCThreads=4 -XX:ConcGCThreads=4"
 RUN export JAVA_HOME && \
     export JAVA_OPTS
 RUN pip install --upgrade pip
@@ -24,3 +24,4 @@ COPY . /app
 RUN pip install -r requirements.txt
 EXPOSE 5001
 CMD python ./api.py
+
