@@ -27,6 +27,10 @@ class GET_PAGE_SIZE(Resource):
     try:
       print("start get fed")
       proxy = server.create_proxy()
+    except Exception as e:
+      error2 = "ERROR2: " + str(e)
+      return error2
+    try:
       chromedriver = "./chromedriver"
       os.environ["webdriver.chrome.driver"] = chromedriver
       url = urlparse.urlparse(proxy.proxy).path
@@ -35,6 +39,9 @@ class GET_PAGE_SIZE(Resource):
       chrome_options.add_argument('--headless')
       chrome_options.add_argument('--disable-dev-shm-usage')
       chrome_options.add_argument("--proxy-server={0}".format(url))
+    except Exception as e:
+      error2 = "ERROR2: " + str(e)
+      return error2
       print("driver")
       driver = webdriver.Chrome(chromedriver,chrome_options =chrome_options)
       driver.set_window_size(1920, 1080)
