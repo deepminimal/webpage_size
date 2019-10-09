@@ -26,7 +26,6 @@ class GET_PAGE_SIZE(Resource):
   def get(self,URL):
     try:
       proxy = server.create_proxy()
-      print(dir(proxy))
       chromedriver = "./chromedriver"
       os.environ["webdriver.chrome.driver"] = chromedriver
       url = urlparse.urlparse(proxy.proxy).path
@@ -64,7 +63,6 @@ class GET_PAGE_SIZE(Resource):
       #      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       #example['result'] = keys 
       driver.quit()
-      
       startDownloadTime = datetime.datetime.strptime(str(proxy.har['log']['entries'][0]['startedDateTime']), '%Y-%m-%dT%H:%M:%S.%fZ')
       LastStartDownloadTime = datetime.datetime.strptime(str(proxy.har['log']['entries'][counter-1]['startedDateTime']), '%Y-%m-%dT%H:%M:%S.%fZ')
       proxy.close()
