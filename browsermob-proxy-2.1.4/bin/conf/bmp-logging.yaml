@@ -1,3 +1,6 @@
+# This file controls the logging configuration for browsermob-proxy in "standalone" mode. To adjust the amount of log output, modify the
+# 'level' fields below. For more information on log4j configuration files, see http://logging.apache.org/log4j/2.x/manual/configuration.html.
+
 configuration:
   name: standalone
   appenders:
@@ -31,4 +34,4 @@ configuration:
         -
           ref: console
         -
-          ref: fil
+          ref: file
