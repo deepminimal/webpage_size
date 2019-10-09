@@ -26,5 +26,6 @@ RUN pip install --upgrade pip
 WORKDIR /app
 COPY . /app
 RUN pip install -r requirements.txt
+RUN touch demofile3.txt
 EXPOSE 5001
 CMD python ./api.py
