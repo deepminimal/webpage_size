@@ -13,7 +13,7 @@ RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt
 #    apt-get clean && \
 #    update-ca-certificates -f;
 RUN apt-get install ca-certificates-java && \
-    apt-get install -y google-chrome-stable --allow-unauthenticated && \
+    apt-get install -y unzip google-chrome-stable --allow-unauthenticated && \
     update-ca-certificates -f;
 
 ENV TZ Europe/Moscow
