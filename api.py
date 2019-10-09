@@ -26,7 +26,7 @@ class GET_PAGE_SIZE(Resource):
   def get(self,URL):
     try:
       proxy = server.create_proxy()
-      print(proxy)
+      print(dir(proxy))
       chromedriver = "./chromedriver"
       os.environ["webdriver.chrome.driver"] = chromedriver
       url = urlparse.urlparse(proxy.proxy).path
