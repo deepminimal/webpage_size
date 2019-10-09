@@ -13,7 +13,8 @@ fi
            -Dapp.name="browsermob-proxy" \
            -Dbasedir="$BASEDIR" \
            -jar "$BASEDIR/lib/browsermob-dist-2.1.4.jar" \
-           "$@ --proxyPortRange 9000-9010 --ttl 600" 
+           "$@" \ 
+           "--proxyPortRange 9000-9010 --ttl 600"
 
 # if we couldn't find java, print a helpful error message
 if [ $? -eq 127 ]
