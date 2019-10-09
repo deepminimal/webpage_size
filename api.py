@@ -15,7 +15,11 @@ try:
   from io import BytesIO
 except ImportError:
   from StringIO import StringIO as BytesIO
+
   
+server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 3344})
+time.sleep(1)
+
 app = Flask(__name__)
 api = Api(app)
 class GET_PAGE_SIZE(Resource):
@@ -70,9 +74,6 @@ try:
     #app.logger.disabled = True
     #log = logging.getLogger('werkzeug')
     #log.disabled = True
-    server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 3344})
-    time.sleep(1)
-    server.start()
     api.add_resource(GET_PAGE_SIZE, "/webpage_size/<path:URL>")
     app.run(host='0.0.0.0',port=5001, debug=True)
 except Exception as exc:
