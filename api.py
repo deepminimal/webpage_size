@@ -28,7 +28,7 @@ class GET_PAGE_SIZE(Resource):
       print("start get fed")
       proxy = server.create_proxy()
     except Exception as e:
-      error2 = "ERROR2: " + str(e)
+      error2 = "ERROR1: " + str(e)
       return error2
     try:
       chromedriver = "./chromedriver"
@@ -54,7 +54,7 @@ class GET_PAGE_SIZE(Resource):
         status_code = proxy.wait_for_traffic_to_stop(100, 20000)
         
       except Exception as err:
-        error1 = "ERROR1: " + str(err)
+        error1 = "ERROR3: " + str(err)
         return str(error1)
       #WebDriverWait(driver, 30).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
       #S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
@@ -84,7 +84,7 @@ class GET_PAGE_SIZE(Resource):
       print("end")
       return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'LastStartDownloadTime': str(LastStartDownloadTime), 'startDownloadTime': str(startDownloadTime), 'total_download_time': str((LastStartDownloadTime - startDownloadTime).total_seconds())}
     except Exception as e:
-      error2 = "ERROR2: " + str(e)
+      error2 = "ERROR4: " + str(e)
       return error2
 try:        
     #app.logger.disabled = True
