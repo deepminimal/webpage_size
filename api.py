@@ -24,9 +24,6 @@ api = Api(app)
 class GET_PAGE_SIZE(Resource):
   def get(self,URL):
     try:
-      server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 5100})
-      if (server.process == None):
-        server.start()
       proxy = server.create_proxy()
       chromedriver = "./chromedriver"
       os.environ["webdriver.chrome.driver"] = chromedriver
@@ -72,6 +69,9 @@ class GET_PAGE_SIZE(Resource):
     except Exception as e:
       print("ERROR: %s" % str(e))
 try:        
+    server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 5100})
+    if (server.process == None):
+      server.start()
     #app.logger.disabled = True
     #log = logging.getLogger('werkzeug')
     #log.disabled = True
