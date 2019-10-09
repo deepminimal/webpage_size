@@ -24,6 +24,8 @@ RUN export JAVA_HOME && \
     export JAVA_OPTS
 RUN pip install --upgrade pip
 WORKDIR /app
+ADD https://github.com/lightbody/browsermob-proxy/releases/download/browsermob-proxy-2.1.4/browsermob-proxy-2.1.4-bin.zip /app/
+RUN unzip browsermob-proxy-2.1.4-bin.zip && rm browsermob-proxy-2.1.4-bin.zip
 COPY . /app
 RUN pip install -r requirements.txt
 EXPOSE 5001
