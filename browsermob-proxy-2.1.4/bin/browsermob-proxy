@@ -8,14 +8,14 @@ if [ -z "$JAVACMD" ]
 then
     JAVACMD="java"
 fi
-
+echo "$JAVA_OPTS"
+echo $@
 "$JAVACMD" $JAVA_OPTS \
            -Dapp.name="browsermob-proxy" \
            -Dbasedir="$BASEDIR" \
            -jar "$BASEDIR/lib/browsermob-dist-2.1.4.jar" \
            "$@"
-echo "$JAVA_OPTS"
-echo $@
+
 # if we couldn't find java, print a helpful error message
 if [ $? -eq 127 ]
 then
