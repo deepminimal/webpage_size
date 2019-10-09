@@ -27,3 +27,4 @@ WORKDIR /app
 COPY . /app
 EXPOSE 8999
 RUN pip install -r requirements.txt
+CMD python ./api.py
