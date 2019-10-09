@@ -30,12 +30,17 @@ class GET_PAGE_SIZE(Resource):
       chrome_options.add_argument('--headless')
       chrome_options.add_argument('--disable-dev-shm-usage')
       chrome_options.add_argument("--proxy-server={0}".format(url))
+      print("driver")
       driver = webdriver.Chrome(chromedriver,chrome_options =chrome_options)
       driver.set_window_size(1920, 1080)
+      print("try")
       try:
+        print("proxy.new_har")
         proxy.new_har(str(URL),options={'captureHeaders': True, 'captureContent':True, 'captureBinaryContent':True})
+        print("driver.get")
         driver.get(URL)
         status_code = proxy.wait_for_traffic_to_stop(100, 20000)
+        
       except Exception as err:
         print("ERROR: %s" % str(err))
       #WebDriverWait(driver, 30).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
@@ -58,6 +63,7 @@ class GET_PAGE_SIZE(Resource):
       #    if (mimeType[i] == har[entries]['response']['content']['mimeType']):
       #      keys[mimeType[i]][entries] = {'bodySize': int(har[entries]['response']['bodySize']),'URL': str(har[entries]['request']['url'])}
       #example['result'] = keys 
+      print("driver.quit")
       driver.quit()
       startDownloadTime = datetime.datetime.strptime(str(proxy.har['log']['entries'][0]['startedDateTime']), '%Y-%m-%dT%H:%M:%S.%fZ')
       LastStartDownloadTime = datetime.datetime.strptime(str(proxy.har['log']['entries'][counter-1]['startedDateTime']), '%Y-%m-%dT%H:%M:%S.%fZ')
