@@ -9,7 +9,7 @@ RUN apt-get update && \
 
 # Fix certificate issues
 RUN apt-get update && \
-    apt-get install curl ca-certificates-java && \
+    apt-get install -y curl ca-certificates-java && \
     apt-get clean && \
     update-ca-certificates -f;
     
