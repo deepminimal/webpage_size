@@ -16,7 +16,7 @@ try:
 except ImportError:
   from StringIO import StringIO as BytesIO
   
-proxy_optoins = {'port': 3343}
+proxy_optoins = {'port': 3344}
 server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options=proxy_optoins)
 server.start()
 
