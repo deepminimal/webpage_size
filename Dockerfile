@@ -25,4 +25,5 @@ RUN export JAVA_HOME && \
 RUN pip install --upgrade pip
 WORKDIR /app
 COPY . /app
+EXPOSE 8999
 RUN pip install -r requirements.txt
