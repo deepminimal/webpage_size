@@ -19,7 +19,7 @@ except ImportError:
 #os.popen("pkill -9 java")
 #os.popen("pkill -9 brows")
 server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 5100})
-#server.start()
+server.start()
 app = Flask(__name__)
 api = Api(app)
 class GET_PAGE_SIZE(Resource):
