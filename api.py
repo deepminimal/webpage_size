@@ -21,6 +21,7 @@ except ImportError:
 
 app = Flask(__name__)
 api = Api(app)
+
 class GET_PAGE_SIZE(Resource):
   def get(self,URL):
     try:
@@ -87,13 +88,11 @@ class GET_PAGE_SIZE(Resource):
     except Exception as e:
       error2 = "ERROR4: " + str(e)
       return error2
-try:        
-    #app.logger.disabled = True
-    #log = logging.getLogger('werkzeug')
-    #log.disabled = True
-    print("start main")
-    api.add_resource(GET_PAGE_SIZE, "/webpage_size/<path:URL>")
-    app.run(host='0.0.0.0',port=5001, debug=True)
-except Exception as exc:
-  error3 = "ERROR3: " + str(exc)
-  print "PLOHO"
+        
+#app.logger.disabled = True
+#log = logging.getLogger('werkzeug')
+#log.disabled = True
+print("start main")
+api.add_resource(GET_PAGE_SIZE, "/webpage_size/<path:URL>")
+app.run(host='0.0.0.0',port=5001, debug=True)
+
