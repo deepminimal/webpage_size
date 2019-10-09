@@ -16,7 +16,8 @@ RUN apt-get update && \
 RUN apt-get install -y google-chrome-stable --allow-unauthenticated 
 ENV TZ Europe/Moscow
 RUN dpkg-reconfigure -f noninteractive tzdata
-ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64" JAVA_OPTS="-Xmx2g -XX:+AlwaysPreTouch -XX:CMSInitiatingOccupancyFraction=10 -XX:ParallelGCThreads=4 -XX:ConcGCThreads=4 -XX:+UseConcMarkSweepGC"
+#ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64" JAVA_OPTS="-Xmx2g -XX:+AlwaysPreTouch -XX:CMSInitiatingOccupancyFraction=10 -XX:ParallelGCThreads=4 -XX:ConcGCThreads=4 -XX:+UseConcMarkSweepGC"
+ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64" JAVA_OPTS="-Xmx2g"
 RUN export JAVA_HOME && \
     export JAVA_OPTS
 RUN pip install --upgrade pip
