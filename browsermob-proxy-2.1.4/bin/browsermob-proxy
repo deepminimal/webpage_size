@@ -14,7 +14,6 @@ echo $@
            -Dapp.name="browsermob-proxy" \
            -Dbasedir="$BASEDIR" \
            -jar "$BASEDIR/lib/browsermob-dist-2.1.4.jar" \
-           --port 8999 \
            --proxyPortRange 9000-9010 \
            --ttl 600
            
