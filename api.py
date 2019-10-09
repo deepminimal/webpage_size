@@ -77,8 +77,8 @@ class GET_PAGE_SIZE(Resource):
       print("end")
       return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'LastStartDownloadTime': str(LastStartDownloadTime), 'startDownloadTime': str(startDownloadTime), 'total_download_time': str((LastStartDownloadTime - startDownloadTime).total_seconds())}
     except Exception as e:
-      error2 = "ERROR2: " + str(err)
-      return error
+      error2 = "ERROR2: " + str(e)
+      return error2
 try:        
     #app.logger.disabled = True
     #log = logging.getLogger('werkzeug')
