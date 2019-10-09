@@ -24,6 +24,6 @@ then
     echo
     echo "Example:"
     echo
-    echo "    $ JAVACMD=/var/lib/jdk/bin/java ./browsermob-proxy -proxyPortRange 9000-9010 -ttl 600"
+    echo "    $ JAVACMD=/var/lib/jdk/bin/java ./browsermob-proxy"
     echo
 fi
