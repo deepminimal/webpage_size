@@ -20,16 +20,16 @@ configuration:
     logger:
       -
         name: net.lightbody.bmp.proxy.jetty.util.ThreadedServer
-        level: error
+        level: warning
         additivity: false
       -
         name: net.lightbody.bmp
         # to suppress unwanted BMP logging statements, set the level below for the source logger to WARN or ERROR.
         # to enable more verbose logging, set the level to DEBUG or TRACE.
-        level: error
+        level: warning
     root:
       # to suppress unwanted logging statements globally, set the level below to WARN or ERROR.
-      level: error
+      level: warning
       appender-ref:
         -
           ref: console
