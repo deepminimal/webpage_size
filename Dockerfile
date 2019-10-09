@@ -27,4 +27,5 @@ WORKDIR /app
 COPY . /app
 EXPOSE 5001
 RUN pip install -r requirements.txt
-CMD python ./api.py
+ENTRYPOINT [ "python" ]
+CMD [ "api.py" ]
