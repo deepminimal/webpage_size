@@ -26,7 +26,7 @@ class GET_PAGE_SIZE(Resource):
   def get(self,URL):
     try:
       print("start get fed")
-      server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 5100})
+      server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 5200})
       server.start()
       proxy = server.create_proxy()
     except Exception as e:
