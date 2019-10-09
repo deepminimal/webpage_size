@@ -17,17 +17,16 @@ except ImportError:
   from StringIO import StringIO as BytesIO
 
   
-server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 5100})
-server.start()
-with open('demofile3.txt', 'r+') as f:
-    f.seek(0, os.SEEK_END)
-    f.write("1")
-    
+
+
 app = Flask(__name__)
 api = Api(app)
 class GET_PAGE_SIZE(Resource):
   def get(self,URL):
     try:
+      server = Server("./browsermob-proxy-2.1.4/bin/browsermob-proxy", options={'port': 5100})
+      if (server.process == None):
+        server.start()
       proxy = server.create_proxy()
       chromedriver = "./chromedriver"
       os.environ["webdriver.chrome.driver"] = chromedriver
@@ -69,7 +68,6 @@ class GET_PAGE_SIZE(Resource):
       startDownloadTime = datetime.datetime.strptime(str(proxy.har['log']['entries'][0]['startedDateTime']), '%Y-%m-%dT%H:%M:%S.%fZ')
       LastStartDownloadTime = datetime.datetime.strptime(str(proxy.har['log']['entries'][counter-1]['startedDateTime']), '%Y-%m-%dT%H:%M:%S.%fZ')
       proxy.close()
-      server.stop()
       return {'bodySize':str(sum(bodySize)), 'time':str(sum(download_time)), 'LastStartDownloadTime': str(LastStartDownloadTime), 'startDownloadTime': str(startDownloadTime), 'total_download_time': str((LastStartDownloadTime - startDownloadTime).total_seconds())}
     except Exception as e:
       print("ERROR: %s" % str(e))
