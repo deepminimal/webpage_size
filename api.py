@@ -10,7 +10,7 @@ api = Api(app)
 class GET_PAGE_SIZE(Resource):
   def get(self,URL):
     try:
-      proxy = Client('http://im-expservices1.gksm.local:8999')
+      proxy = Client('im-expservices1.gksm.local:8999')
       chromedriver = "./chromedriver"
       os.environ["webdriver.chrome.driver"] = chromedriver
       url = urlparse.urlparse(proxy.proxy).path
