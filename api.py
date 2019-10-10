@@ -1,25 +1,16 @@
 from browsermobproxy import Client
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
-import os
-import json
-import urlparse
-import json
-import time
+import os, urlparse, time, logging, datetime
 from collections import defaultdict
-from flask import Flask, jsonify
+from flask import Flask
 from flask_restful import Api, Resource, reqparse
-import logging
-import datetime
-import request
 try:
   from io import BytesIO
 except ImportError:
   from StringIO import StringIO as BytesIO
-
 app = Flask(__name__)
 api = Api(app)
-
 class GET_PAGE_SIZE(Resource):
   def get(self,URL):
     try:
