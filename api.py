@@ -1,4 +1,4 @@
-from browsermobproxy import Server
+from browsermobproxy import Client
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 import os
@@ -11,13 +11,11 @@ from flask import Flask, jsonify
 from flask_restful import Api, Resource, reqparse
 import logging
 import datetime
+import request
 try:
   from io import BytesIO
 except ImportError:
   from StringIO import StringIO as BytesIO
-  
-#os.popen("pkill -9 java")
-#os.popen("pkill -9 brows")
 
 app = Flask(__name__)
 api = Api(app)
@@ -25,6 +23,7 @@ api = Api(app)
 class GET_PAGE_SIZE(Resource):
   def get(self,URL):
     try:
+      proxy = Client('localhost:8999')
       chromedriver = "./chromedriver"
       os.environ["webdriver.chrome.driver"] = chromedriver
       url = urlparse.urlparse(proxy.proxy).path
@@ -36,7 +35,6 @@ class GET_PAGE_SIZE(Resource):
       driver = webdriver.Chrome(chromedriver,chrome_options =chrome_options)
       driver.set_window_size(1920, 1080)
       try:
-        print("proxy.new_har")
         proxy.new_har(str(URL),options={'captureHeaders': True, 'captureContent':True, 'captureBinaryContent':True})
         print("driver.get")
         driver.get(URL)
