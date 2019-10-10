@@ -1,10 +1,10 @@
 from browsermobproxy import Client
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
-import os, urlparse, time, logging, datetime
-from collections import defaultdict
+import urlparse, logging, datetime
+#from collections import defaultdict
 from flask import Flask
-from flask_restful import Api, Resource, reqparse
+from flask_restful import Api, Resource
 try:
   from io import BytesIO
 except ImportError:
@@ -33,9 +33,9 @@ class GET_PAGE_SIZE(Resource):
       except Exception as err:
         error1 = "ERROR2: " + str(err)
         return str(error1)
-      #WebDriverWait(driver, 30).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
-      #S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
-      #driver.set_window_size(S('Width'),S('Height'))
+      WebDriverWait(driver, 30).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
+      S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
+      driver.set_window_size(S('Width'),S('Height'))
       #har = proxy.har['log']['entries']
       #mimeType = []
       bodySize = []
