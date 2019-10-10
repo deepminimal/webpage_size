@@ -1,14 +1,10 @@
 from browsermobproxy import Client
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
-import urlparse, logging, datetime
+import urlparse, logging, datetime, os
 #from collections import defaultdict
 from flask import Flask
 from flask_restful import Api, Resource
-try:
-  from io import BytesIO
-except ImportError:
-  from StringIO import StringIO as BytesIO
 app = Flask(__name__)
 api = Api(app)
 class GET_PAGE_SIZE(Resource):
@@ -29,7 +25,7 @@ class GET_PAGE_SIZE(Resource):
         proxy.new_har(str(URL),options={'captureHeaders': True, 'captureContent':True, 'captureBinaryContent':True})
         print("driver.get")
         driver.get(URL)
-        status_code = proxy.wait_for_traffic_to_stop(100, 20000)
+        proxy.wait_for_traffic_to_stop(100, 20000)
       except Exception as err:
         error1 = "ERROR2: " + str(err)
         return str(error1)
