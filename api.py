@@ -27,7 +27,7 @@ class GET_PAGE_SIZE(Resource):
         proxy.wait_for_traffic_to_stop(100, 20000)
       except Exception as err:
         return "GET ERROR: " + str(err)
-      WebDriverWait(driver, 30).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
+      #WebDriverWait(driver, 20).until(lambda driver: driver.execute_script("return document.readyState == 'complete'"))
       S = lambda X: driver.execute_script('return document.body.parentNode.scroll'+X)
       driver.set_window_size(S('Width'),S('Height'))
       #har = proxy.har['log']['entries']
